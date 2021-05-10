@@ -1,43 +1,10 @@
 #pragma once
-#include <type_traits>
 #include <iterator>
-#include <vector>
-#include <cmath>
 #include <algorithm>
-#include <chrono>
 
-using std::is_floating_point;
 using std::forward_iterator_tag;
 using std::random_access_iterator_tag;
-using std::vector;
-using std::ceil;
 using std::max;
-using std::find;
-using std::count;
-using std::count_if;
-using std::chrono::microseconds;
-using std::chrono::high_resolution_clock;
-using std::chrono::duration_cast;
-
-
-
-
-// NONE
-// ----
-// Zero size type.
-
-#ifndef NONE
-struct None {
-  friend bool operator==(None a, None b) noexcept { return true; }
-
-  template <class T>
-  friend bool operator==(None a, const T& b) noexcept { return false; }
-
-  template <class T>
-  friend bool operator==(const T& a, None b) noexcept { return false; }
-};
-#define NONE None
-#endif
 
 
 
@@ -136,73 +103,6 @@ struct None {
   size_t size() { return se; } \
   bool empty() { return size() == 0; }
 #endif
-
-
-
-
-// CEIL-DIV
-// --------
-
-template <class T>
-T ceilDiv(T x, T y) {
-  if (is_floating_point<T>()) return ceil(x/y);
-  else return (x + y-1) / y;
-}
-
-
-
-
-// FIND
-// ----
-
-template <class J, class T>
-auto find(const J& x, const T& v) {
-  return find(x.begin(), x.end(), v);
-}
-
-template <class J, class T>
-int findIndex(const J& x, const T& v) {
-  auto i = find(x.begin(), x.end(), v);
-  return i==x.end()? -1 : i-x.begin();
-}
-
-
-
-
-// COUNT-*
-// -------
-
-template <class J, class T>
-int count(const J& x, const T& v) {
-  return count(x.begin(), x.end(), v);
-}
-
-
-template <class I, class F>
-int countIf(I ib, I ie, F fn) {
-  return count_if(ib, ie, fn);
-}
-
-template <class J, class F>
-int countIf(const J& x, F fn) {
-  return count_if(x.begin(), x.end(), fn);
-}
-
-
-
-
-// ERASE
-// -----
-
-template <class T>
-void eraseIndex(vector<T>& x, int i) {
-  x.erase(x.begin()+i);
-}
-
-template <class T>
-void eraseIndex(vector<T>& x, int i, int I) {
-  x.erase(x.begin()+i, x.begin()+I);
-}
 
 
 
@@ -348,20 +248,4 @@ template <class T>
 auto range(T v, T V, T DV=1) {
   auto x = range(rangeSize(v, V, DV));
   return transform(x, [=](int n) { return v+DV*n; });
-}
-
-
-
-
-// MEASURE
-// -------
-
-template <class F>
-float measureDuration(F fn, int N=1) {
-  auto start = high_resolution_clock::now();
-  for (int i=0; i<N; i++)
-    fn();
-  auto stop = high_resolution_clock::now();
-  auto duration = duration_cast<microseconds>(stop - start);
-  return duration.count()/(N*1000.0f);
 }
