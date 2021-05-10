@@ -23,27 +23,27 @@ class DiGraph {
 
   // Cute helpers
   private:
-  int s() { return vto.size(); }
-  int ei(int u, int v) { return findIndex(vto[u], v); }
+  int s() const { return vto.size(); }
+  int ei(int u, int v) const { return findIndex(vto[u], v); }
 
   // Read operations
   public:
-  int span()  { return s(); }
-  int order() { return N; }
-  int size()  { return M; }
+  int span()  const { return s(); }
+  int order() const { return N; }
+  int size()  const { return M; }
 
-  bool hasVertex(int u)      { return u < s() && vex[u]; }
-  bool hasEdge(int u, int v) { return u < s() && ei(u, v) >= 0; }
-  auto edges(int u)          { return u < s()? iterable(vto[u]) : iterable(none); }
-  int degree(int u)          { return u < s()? vto[u].size()    : 0; }
-  auto vertices()      { return filter(range(s()), [&](int u) { return  vex[u]; }); }
-  auto nonVertices()   { return filter(range(s()), [&](int u) { return !vex[u]; }); }
-  auto inEdges(int v)  { return filter(range(s()), [&](int u) { return ei(u, v) >= 0; }); }
-  int inDegree(int v) { return countIf(range(s()), [&](int u) { return ei(u, v) >= 0; }); }
+  bool hasVertex(int u)      const { return u < s() && vex[u]; }
+  bool hasEdge(int u, int v) const { return u < s() && ei(u, v) >= 0; }
+  auto edges(int u)          const { return u < s()? iterable(vto[u]) : iterable(none); }
+  int degree(int u)          const { return u < s()? vto[u].size()    : 0; }
+  auto vertices()      const { return filter(range(s()), [&](int u) { return  vex[u]; }); }
+  auto nonVertices()   const { return filter(range(s()), [&](int u) { return !vex[u]; }); }
+  auto inEdges(int v)  const { return filter(range(s()), [&](int u) { return ei(u, v) >= 0; }); }
+  int inDegree(int v) const { return countIf(range(s()), [&](int u) { return ei(u, v) >= 0; }); }
 
-  V vertexData(int u)         { return hasVertex(u)? vdata[u] : V(); }
+  V vertexData(int u)   const { return hasVertex(u)? vdata[u] : V(); }
   void setVertexData(int u, V d) { if (hasVertex(u)) vdata[u] = d; }
-  E edgeData(int u, int v)         { return hasEdge(u, v)? edata[u][ei(u, v)] : E(); }
+  E edgeData(int u, int v)   const { return hasEdge(u, v)? edata[u][ei(u, v)] : E(); }
   void setEdgeData(int u, int v, E d) { if (hasEdge(u, v)) edata[u][ei(u, v)] = d; }
 
   // Write operations
@@ -102,5 +102,5 @@ class DiGraph {
   // Generate operations
   public:
   template <class T>
-  auto vertexContainer(T _) { return vector<T>(s()); }
+  auto vertexContainer(T _) const { return vector<T>(s()); }
 };

@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 #include <vector>
 #include <algorithm>
 
@@ -6,6 +7,8 @@ using std::vector;
 using std::find;
 using std::count;
 using std::count_if;
+using std::copy;
+using std::abs;
 
 
 
@@ -65,17 +68,28 @@ void eraseIndex(vector<T>& x, int i, int I) {
 
 
 
+// COPY
+// ----
+
+template <class T>
+void copy(vector<T>& a, const vector<T>& x) {
+  copy(x.begin(), x.end(), a.begin());
+}
+
+
+
+
 // FILL
 // ----
 
 template <class T>
-void fill(T *a, int N, T v) {
+void fill(T *a, int N, const T& v) {
   for (int i=0; i<N; i++)
     a[i] = v;
 }
 
 template <class T>
-void fill(vector<T>& a, T v) {
+void fill(vector<T>& a, const T& v) {
   fill(a.begin(), a.end(), v);
 }
 
@@ -86,13 +100,13 @@ void fill(vector<T>& a, T v) {
 // -------
 
 template <class T, class I>
-void fillAt(T *a, T v, I&& is) {
+void fillAt(T *a, const T& v, I&& is) {
   for (int i : is)
     a[i] = v;
 }
 
 template <class T, class I>
-void fillAt(vector<T>& a, T v, I&& is) {
+void fillAt(vector<T>& a, const T& v, I&& is) {
   fillAt(a.data(), v, is);
 }
 
@@ -103,7 +117,7 @@ void fillAt(vector<T>& a, T v, I&& is) {
 // ---
 
 template <class T>
-auto sum(T *x, int N) {
+auto sum(const T *x, int N) {
   T a = T();
   for (int i=0; i<N; i++)
     a += x[i];
@@ -111,7 +125,7 @@ auto sum(T *x, int N) {
 }
 
 template <class T>
-auto sum(vector<T>& x) {
+auto sum(const vector<T>& x) {
   return sum(x.data(), x.size());
 }
 
@@ -122,7 +136,7 @@ auto sum(vector<T>& x) {
 // ------
 
 template <class T, class I>
-auto sumAt(T *x, I&& is) {
+auto sumAt(const T *x, I&& is) {
   T a = T();
   for (int i : is)
     a += x[i];
@@ -130,7 +144,7 @@ auto sumAt(T *x, I&& is) {
 }
 
 template <class T, class I>
-auto sumAt(vector<T>& x, I&& is) {
+auto sumAt(const vector<T>& x, I&& is) {
   return sumAt(x.data(), is);
 }
 
@@ -141,13 +155,13 @@ auto sumAt(vector<T>& x, I&& is) {
 // ---------
 
 template <class T>
-void addValue(T *a, int N, T v) {
+void addValue(T *a, int N, const T& v) {
   for (int i=0; i<N; i++)
     a[i] += v;
 }
 
 template <class T>
-void addValue(vector<T>& a, T v) {
+void addValue(vector<T>& a, const T& v) {
   addValue(a.data(), a.size(), v);
 }
 
@@ -158,13 +172,13 @@ void addValue(vector<T>& a, T v) {
 // ------------
 
 template <class T, class I>
-void addValueAt(T *a, T v, I&& is) {
+void addValueAt(T *a, const T& v, I&& is) {
   for (int i : is)
     a[i] += v;
 }
 
 template <class T, class I>
-void addValueAt(vector<T>& a, T v, I&& is) {
+void addValueAt(vector<T>& a, const T& v, I&& is) {
   addValueAt(a.data(), v, is);
 }
 
@@ -175,7 +189,7 @@ void addValueAt(vector<T>& a, T v, I&& is) {
 // ---------
 
 template <class T>
-auto absError(T *x, T *y, int N) {
+auto absError(const T *x, const T *y, int N) {
   T a = T();
   for (int i=0; i<N; i++)
     a += abs(x[i] - y[i]);
@@ -183,6 +197,23 @@ auto absError(T *x, T *y, int N) {
 }
 
 template <class T>
-auto absError(vector<T>& x, vector<T>& y) {
+auto absError(const vector<T>& x, const vector<T>& y) {
   return absError(x.data(), y.data(), x.size());
+}
+
+
+
+
+// MULTIPLY
+// --------
+
+template <class T>
+void multiply(T *a, const T *x, const T *y, int N) {
+  for (int i=0; i<N; i++)
+    a[i] = x[i] * y[i];
+}
+
+template <class T>
+void multiply(vector<T>& a, const vector<T>& x, const vector<T>& y) {
+  multiply(a.data(), x.data(), y.data(), x.size());
 }

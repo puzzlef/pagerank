@@ -8,7 +8,7 @@
 // ---------
 
 template <class H, class G>
-void transpose(H& a, G& x) {
+void transpose(H& a, const G& x) {
   for (int u : x.vertices())
     a.addVertex(u, x.vertexData(u));
   for (int u : x.vertices()) {
@@ -18,7 +18,7 @@ void transpose(H& a, G& x) {
 }
 
 template <class G>
-auto transpose(G& x) {
+auto transpose(const G& x) {
   G a; transpose(a, x);
   return a;
 }
@@ -30,7 +30,7 @@ auto transpose(G& x) {
 // ---------------------
 
 template <class H, class G>
-void transposeWithDegree(H& a, G& x) {
+void transposeWithDegree(H& a, const G& x) {
   for (int u : x.vertices())
     a.addVertex(u, x.degree(u));
   for (int u : x.vertices()) {
@@ -40,7 +40,7 @@ void transposeWithDegree(H& a, G& x) {
 }
 
 template <class G>
-auto transposeWithDegree(G& x) {
+auto transposeWithDegree(const G& x) {
   using E = typename G::TEdge;
   DiGraph<int, E> a; transposeWithDegree(a, x);
   return a;

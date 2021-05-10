@@ -2,13 +2,15 @@
 #include <string>
 #include <istream>
 #include <sstream>
+#include <fstream>
 #include <algorithm>
 #include "_main.hxx"
 #include "DiGraph.hxx"
 
 using std::string;
 using std::istream;
-using std::istringstream;
+using std::stringstream;
+using std::ofstream;
 using std::getline;
 using std::max;
 
@@ -27,7 +29,7 @@ void readMtx(G& a, istream& s) {
     getline(s, ln);
     if (ln.find('%')!=0) break;
     if (ln.find("%%")!=0) continue;
-    istringstream ls(ln);
+    stringstream ls(ln);
     ls >> h0 >> h1 >> h2 >> h3 >> h4;
   }
   if (h1!="matrix" || h2!="coordinate") return;
@@ -35,7 +37,7 @@ void readMtx(G& a, istream& s) {
 
   // read rows, cols, size
   int r, c, sz;
-  istringstream ls(ln);
+  stringstream ls(ln);
   ls >> r >> c >> sz;
   int n = max(r, c);
   for (int u=1; u<=n; u++)
@@ -44,7 +46,7 @@ void readMtx(G& a, istream& s) {
   // read edges (from, to)
   while (getline(s, ln)) {
     int u, v;
-    ls = istringstream(ln);
+    ls = stringstream(ln);
     if (!(ls >> u >> v)) break;
     a.addEdge(u, v);
     if (sym) a.addEdge(v, u);
@@ -60,11 +62,36 @@ auto readMtx(istream& s) {
 template <class G>
 void readMtx(G& a, const char *pth) {
   string buf = readFile(pth);
-  istringstream s(buf);
+  stringstream s(buf);
   return readMtx(a, s);
 }
 
 auto readMtx(const char *pth) {
   DiGraph<> a; readMtx(a, pth);
   return a;
+}
+
+
+
+
+// WRITE-MTX
+// ---------
+
+template <class G>
+void writeMtx(ostream& a, const G& x) {
+  a << "%%MatrixMarket matrix coordinate real asymmetric\n";
+  a << x.order() << " " << x.order() << " " << x.size() << "\n";
+  for (int u : x.vertices()) {
+    for (int v : x.edges(u))
+      a << u << " " << v << " " << x.edgeData(u) << "\n";
+  }
+}
+
+template <class G>
+void writeMtx(string pth, const G& x) {
+  string s0; stringstream s(s0);
+  writeMtx(s, x);
+  ofstream f(pth);
+  f << s.rdbuf();
+  f.close();
 }
