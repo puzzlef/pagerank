@@ -31,7 +31,8 @@ class DiGraph {
   bool hasEdge(int u, int v) { return u < s() && ei(u, v) >= 0; }
   auto edges(int u)          { return u < s()? iterable(vto[u]) : iterable(none); }
   int degree(int u)          { return u < s()? vto[u].size()    : 0; }
-  auto vertices()      { return filter(range(s()), [&](int u) { return vex[u]; }); }
+  auto vertices()      { return filter(range(s()), [&](int u) { return  vex[u]; }); }
+  auto nonVertices()   { return filter(range(s()), [&](int u) { return !vex[u]; }); }
   auto inEdges(int v)  { return filter(range(s()), [&](int u) { return ei(u, v) >= 0; }); }
   int inDegree(int v) { return countIf(range(s()), [&](int u) { return ei(u, v) >= 0; }); }
 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "src/_all.hxx"
+#include "src/main.hxx"
 
 using namespace std;
 
