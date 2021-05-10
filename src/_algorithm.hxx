@@ -99,6 +99,44 @@ void fillAt(vector<T>& a, T v, I&& is) {
 
 
 
+// SUM
+// ---
+
+template <class T>
+auto sum(T *x, int N) {
+  T a = T();
+  for (int i=0; i<N; i++)
+    a += x[i];
+  return a;
+}
+
+template <class T>
+auto sum(vector<T>& x) {
+  return sum(x.data(), x.size());
+}
+
+
+
+
+// SUM-AT
+// ------
+
+template <class T, class I>
+auto sumAt(T *x, I&& is) {
+  T a = T();
+  for (int i : is)
+    a += x[i];
+  return a;
+}
+
+template <class T, class I>
+auto sumAt(vector<T>& x, I&& is) {
+  return sumAt(x.data(), is);
+}
+
+
+
+
 // ADD-VALUE
 // ---------
 

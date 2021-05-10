@@ -21,8 +21,8 @@ void pagerankPushOnce(C& a, C& r, G& x, T p) {
 
 template <class C, class G, class T>
 int pagerankPushLoop(C& a, C& r, G& x, T p, T E, int L) {
-  T e0 = T();
   int l = 0;
+  T e0 = T();
   for (; l<L; l++) {
     pagerankPushOnce(a, r, x, p);
     T e1 = absError(a, r);
@@ -34,14 +34,22 @@ int pagerankPushLoop(C& a, C& r, G& x, T p, T E, int L) {
 }
 
 
+// Find pagerank by pushing contribution to out-vertices.
+// @param x original graph
+// @param init initial ranks
+// @param o options {damping=0.85, tolerance=1e-6, maxIterations=500}
+// @returns {ranks, rounds, time}
 template <class G, class T=float>
 PagerankResult<T> pageRankPush(G& x, vector<T> *init=nullptr, PagerankOptions<T> o={}) {
-  int N = x.order(), l;
+  T    p = o.damping;
+  T    E = o.tolerance;
+  int  L = o.maxIterations;
+  int  N = x.order(), l;
   auto a = x.vertexContainer(T());
   auto r = x.vertexContainer(T());
   if (init) r = *init;
   else fill(r, T(1)/N);
-  float t = measureDuration([&]() { l = pagerankPushLoop(a, r, x, o.damping, o.tolerance, o.maxIterations); });
+  float t = measureDuration([&]() { l = pagerankPushLoop(a, r, x, p, E, L); });
   fillAt(a, T(), x.nonVertices());
   return {a, l, t};
 }
