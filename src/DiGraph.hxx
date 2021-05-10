@@ -9,6 +9,11 @@ using std::vector;
 
 template <class V=NONE, class E=NONE>
 class DiGraph {
+  public:
+  using TVertex = V;
+  using TEdge   = E;
+
+  private:
   vector<int>  none;
   vector<bool> vex;
   vector<vector<int>> vto;
