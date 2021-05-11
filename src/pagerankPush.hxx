@@ -1,6 +1,8 @@
 #pragma once
 #include <algorithm>
 #include "_main.hxx"
+#include "vertices.hxx"
+#include "edges.hxx"
 #include "pagerank.hxx"
 
 using std::swap;
@@ -8,23 +10,22 @@ using std::swap;
 
 
 
-template <class C, class G, class T>
-void pagerankPushOnce(C& a, const C& r, const G& x, T p) {
-  int N = x.order();
+template <class T>
+void pagerankPushOnce(vector<T>& a, const vector<T>& r, const vector<int>& vto, const vector<int>& eto, int N, T p) {
   fill(a, (1-p)/N);
-  for (int u : x.vertices()) {
-    int d = x.degree(u);
-    if (d > 0) addValueAt(a, p*r[u]/d, x.edges(u));
+  for (int u=0; u<N; u++) {
+    int d = vto[u+1] - vto[u];
+    if (d > 0) addValueAt(a, p*r[u]/d, slice(eto, vto[u], vto[u+1]));
     else addValue(a, p*r[u]/N);
   }
 }
 
-template <class C, class G, class T>
-int pagerankPushLoop(C& a, C& r, const G& x, T p, T E, int L) {
+template <class T>
+int pagerankPushLoop(vector<T>& a, vector<T>& r, const vector<int>& vto, const vector<int>& eto, int N, T p, T E, int L) {
   int l = 0;
   T e0 = T();
   for (; l<L; l++) {
-    pagerankPushOnce(a, r, x, p);
+    pagerankPushOnce(a, r, vto, eto, N, p);
     T e1 = absError(a, r);
     if (e1<E || e1==e0) break;
     swap(a, r);
@@ -33,12 +34,11 @@ int pagerankPushLoop(C& a, C& r, const G& x, T p, T E, int L) {
   return l;
 }
 
-template <class C, class G, class T>
-int pagerankPushCore(C& a, C& r, const G& x, const C *q, T p, T E, int L) {
-  int N = x.order();
+template <class T>
+int pagerankPushCore(vector<T>& a, vector<T>& r, const vector<int>& vto, const vector<int>& eto, int N, const vector<T> *q, T p, T E, int L) {
   if (q) copy(r, *q);
   else fill(r, T(1)/N);
-  return pagerankPushLoop(a, r, x, p, E, L);
+  return pagerankPushLoop(a, r, vto, eto, N, p, E, L);
 }
 
 
@@ -52,9 +52,10 @@ PagerankResult<T> pagerankPush(const G& x, const vector<T> *q=nullptr, PagerankO
   T    p = o.damping;
   T    E = o.tolerance;
   int  L = o.maxIterations, l;
-  auto a = x.vertexContainer(T());
-  auto r = x.vertexContainer(T());
-  float t = measureDuration([&]() { l = pagerankPushCore(a, r, x, q, p, E, L); }, o.repeat);
-  fillAt(a, T(), x.nonVertices());
-  return {a, l, t};
+  auto vto = sourceOffsets(x);
+  auto eto = destinationIndices(x);
+  int  N   = x.order();
+  vector<T> a(N), r(N);
+  float t = measureDuration([&]() { l = pagerankPushCore(a, r, vto, eto, N, q, p, E, L); }, o.repeat);
+  return {vertexContainer(x, a), l, t};
 }

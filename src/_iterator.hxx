@@ -4,6 +4,7 @@
 
 using std::forward_iterator_tag;
 using std::random_access_iterator_tag;
+using std::distance;
 using std::max;
 
 
@@ -130,6 +131,103 @@ template <class J>
 auto iterable(const J& x) {
   using I = decltype(x.begin());
   return Iterable<I>(x.begin(), x.end());
+}
+
+
+
+
+// SIZED-ITERABLE
+// --------------
+
+template <class I>
+class SizedIterable : public Iterable<I> {
+  const size_t N;
+
+  public:
+  SizedIterable(I ib, I ie, size_t N) : Iterable<I>(ib, ie), N(N) {}
+  ITERABLE_SIZE(N)
+};
+
+
+template <class I>
+auto sizedIterable(I ib, I ie, int N) {
+  return SizedIterable<I>(ib, ie, N);
+}
+
+template <class I>
+auto sizedIterable(I ib, I ie) {
+  return SizedIterable<I>(ib, ie, distance(ib, ie));
+}
+
+template <class J>
+auto sizedIterable(const J& x, int N) {
+  using I = decltype(x.begin());
+  return Iterable<I>(x.begin(), x.end(), N);
+}
+
+template <class J>
+auto sizedIterable(const J& x) {
+  using I = decltype(x.begin());
+  return Iterable<I>(x.begin(), x.end());
+}
+
+
+
+
+// SIZE
+// ----
+
+template <class T>
+int size(const vector<T>& x) {
+  return x.size();
+}
+
+template <class I>
+int size(const SizedIterable<I>& x) {
+  return x.size();
+}
+
+template <class J>
+int size(const J& x) {
+  return distance(x.begin(), x.end());
+}
+
+
+
+
+// CSIZE
+// -----
+// Compile-time size.
+
+template <class T>
+int csize(const vector<T>& x) {
+  return x.size();
+}
+
+template <class I>
+int csize(const SizedIterable<I>& x) {
+  return x.size();
+}
+
+template <class J>
+int csize(const J& x) {
+  return -1;
+}
+
+
+
+
+// SLICE
+// -----
+
+template <class J>
+auto slice(const J& x, int i) {
+  return sizedIterable(x.begin()+i, x.end());
+}
+
+template <class J>
+auto slice(const J& x, int i, int I) {
+  return sizedIterable(x.begin()+i, x.begin()+I, I-i);
 }
 
 

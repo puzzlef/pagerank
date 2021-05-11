@@ -1,42 +1,45 @@
 #pragma once
+#include <algorithm>
 #include "_main.hxx"
+#include "vertices.hxx"
+#include "edges.hxx"
 #include "pagerank.hxx"
 
+using std::swap;
 
 
 
-template <class C, class G, class T>
-T pagerankTeleport(const C& r, const G& xt, T p) {
-  int N = xt.order();
+
+template <class T>
+T pagerankTeleport(const vector<T>& r, const vector<int>& vfrom, const vector<int>& efrom, const vector<int>& vdata, int N, T p) {
   T a = (1-p)/N;
-  for (int u : xt.vertices())
-    if (xt.vertexData(u) == 0) a += p*r[u]/N;
+  for (int u=0; u<N; u++)
+    if (vdata[u] == 0) a += p*r[u]/N;
   return a;
 }
 
-template <class C, class G, class T>
-void pagerankFactor(C& a, const G& xt, T p) {
-  int N = xt.order();
-  for (int u : xt.vertices()) {
-    int d = xt.vertexData(u);
+template <class T>
+void pagerankFactor(vector<T>& a, const vector<int>& vfrom, const vector<int>& efrom, const vector<int>& vdata, int N, T p) {
+  for (int u=0; u<N; u++) {
+    int d = vdata[u];
     a[u] = d>0? p/d : 0;
   }
 }
 
-template <class C, class G, class T>
-void pagerankPullOnce(C& a, const C& c, const G& xt, T c0) {
-  for (int v : xt.vertices())
-    a[v] = c0 + sumAt(c, xt.edges(v));
+template <class T>
+void pagerankPullOnce(vector<T>& a, const vector<T>& c, const vector<int>& vfrom, const vector<int>& efrom, const vector<int>& vdata, int N, T c0) {
+  for (int v=0; v<N; v++)
+    a[v] = c0 + sumAt(c, slice(efrom, vfrom[v], vfrom[v+1]));
 }
 
-template <class C, class G, class T>
-int pagerankPullLoop(C& a, C& r, const C& f, C& c, const G& xt, T p, T E, int L) {
+template <class T>
+int pagerankPullLoop(vector<T>& a, vector<T>& r, const vector<T>& f, vector<T>& c, const vector<int>& vfrom, const vector<int>& efrom, const vector<int>& vdata, int N, T p, T E, int L) {
   int l = 0;
   T e0 = T();
   for (; l<L; l++) {
-    T c0 = pagerankTeleport(r, xt, p);
+    T c0 = pagerankTeleport(r, vfrom, efrom, vdata, N, p);
     multiply(c, r, f);
-    pagerankPullOnce(a, c, xt, c0);
+    pagerankPullOnce(a, c, vfrom, efrom, vdata, N, c0);
     T e1 = absError(a, r);
     if (e1 < E || e1 == e0) break;
     swap(a, r);
@@ -45,13 +48,12 @@ int pagerankPullLoop(C& a, C& r, const C& f, C& c, const G& xt, T p, T E, int L)
   return l;
 }
 
-template <class C, class G, class T>
-int pagerankPullCore(C& a, C& r, C& f, C& c, const G& xt, const C *q, T p, T E, int L) {
-  int N = xt.order();
+template <class T>
+int pagerankPullCore(vector<T>& a, vector<T>& r, vector<T>& f, vector<T>& c, const vector<int>& vfrom, const vector<int>& efrom, const vector<int>& vdata, int N, const vector<T> *q, T p, T E, int L) {
   if (q) copy(r, *q);
-  else fillAt(r, T(1)/N, xt.vertices());
-  pagerankFactor(f, xt, p);
-  return pagerankPullLoop(a, r, f, c, xt, p, E, L);
+  else fill(r, T(1)/N);
+  pagerankFactor(f, vfrom, efrom, vdata, N, p);
+  return pagerankPullLoop(a, r, f, c, vfrom, efrom, vdata, N, p, E, L);
 }
 
 
@@ -65,10 +67,11 @@ PagerankResult<T> pagerankPull(const G& xt, const vector<T> *q=nullptr, Pagerank
   T    p = o.damping;
   T    E = o.tolerance;
   int  L = o.maxIterations, l;
-  auto a = xt.vertexContainer(T());
-  auto r = xt.vertexContainer(T());
-  auto f = xt.vertexContainer(T());
-  auto c = xt.vertexContainer(T());
-  float t = measureDuration([&]() { l = pagerankPullCore(a, r, f, c, xt, q, p, E, L); }, o.repeat);
-  return {a, l, t};
+  auto vfrom = sourceOffsets(xt);
+  auto efrom = destinationIndices(xt);
+  auto vdata = vertexData(xt);
+  int  N     = xt.order();
+  vector<T> a(N), r(N), f(N), c(N);
+  float t = measureDuration([&]() { l = pagerankPullCore(a, r, f, c, vfrom, efrom, vdata, N, q, p, E, L); }, o.repeat);
+  return {vertexContainer(xt, a), l, t};
 }
