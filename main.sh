@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-src="pagerank-adjust-tolerance-function"
+src="pagerank-adjust-tolerance-l1norm"
 out="/home/resources/Documents/subhajit/$src.log"
 ulimit -s unlimited
 printf "" > "$out"

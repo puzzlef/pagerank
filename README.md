@@ -31,24 +31,6 @@ $ ./a.out ~/data/min-2SCC.mtx
 $ ...
 
 # ...
-#
-# Loading graph /home/subhajit/data/web-Stanford.mtx ...
-# order: 281903 size: 2312497 {}
-# order: 281903 size: 2312497 {} (transposeWithDegree)
-# [00436.174 ms; 063 iters.] [0.0000e+00 err.] pagerankL1Norm
-# [03434.695 ms; 500 iters.] [1.2680e-06 err.] pagerankL2Norm
-# [00283.799 ms; 041 iters.] [6.1306e-05 err.] pagerankLiNorm
-#
-# ...
-#
-# Loading graph /home/subhajit/data/soc-LiveJournal1.mtx ...
-# order: 4847571 size: 68993773 {}
-# order: 4847571 size: 68993773 {} (transposeWithDegree)
-# [13047.078 ms; 051 iters.] [0.0000e+00 err.] pagerankL1Norm
-# [13306.672 ms; 052 iters.] [8.2882e-07 err.] pagerankL2Norm
-# [04355.853 ms; 017 iters.] [1.7652e-03 err.] pagerankLiNorm
-#
-# ...
 ```
 
 [![](https://i.imgur.com/f3OhDzO.gif)][sheets]
