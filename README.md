@@ -2,7 +2,7 @@ Comparing the effect of using different values of damping factor, with PageRank
 ([pull], [CSR]).
 
 For this experiment, the damping factor `d` (which is usually `0.85`) is
-varied from `1.0` to `0.5` in steps of `0.05`. This is in order to compare
+varied from `0.50` to `1.00` in steps of `0.05`. This is in order to compare
 the performace variation with each damping factor. The calculated error
 is the L1-norm wrt default pagerank (`d=0.85`). As expected, increasing
 the damping factor beyond `0.85` significantly increases convergence time,
@@ -11,15 +11,21 @@ damping factor implies that a random surfer follows links with higher
 probability (and jumps to ransom page with lower probability). Also note that
 `500` is the maximum iterations allowed here.
 
-The input data used for this experiment is available at ["graphs"] (for small
-ones), and the [SuiteSparse Matrix Collection].
+All outputs are saved in [out](out/) and a small part of the output is listed
+here. Some [charts] are also included below, generated from [sheets]. The input
+data used for this experiment is available at ["graphs"] (for small ones), and
+the [SuiteSparse Matrix Collection].
 
 <br>
 
 ```bash
 $ g++ -O3 main.cxx
-$ ./a.out ~/data/web-Stanford.mtx
+$ ./a.out ~/data/min-1DeadEnd.mtx
+$ ./a.out ~/data/min-2SCC.mtx
+$ ...
 
+# ...
+#
 # Loading graph /home/subhajit/data/web-Stanford.mtx ...
 # order: 281903 size: 2312497 {}
 # order: 281903 size: 2312497 {} (transposeWithDegree)
@@ -35,14 +41,9 @@ $ ./a.out ~/data/web-Stanford.mtx
 # [00135.776 ms; 021 iters.] [4.2481e-01 err.] pagerank [damping=0.60]
 # [00116.598 ms; 018 iters.] [4.8881e-01 err.] pagerank [damping=0.55]
 # [00103.777 ms; 016 iters.] [5.5010e-01 err.] pagerank [damping=0.50]
-```
-
-<br>
-
-```bash
-$ g++ -O3 main.cxx
-$ ./a.out ~/data/soc-LiveJournal1.mtx
-
+#
+# ...
+#
 # Loading graph /home/subhajit/data/soc-LiveJournal1.mtx ...
 # order: 4847571 size: 68993773 {}
 # order: 4847571 size: 68993773 {} (transposeWithDegree)
@@ -58,7 +59,12 @@ $ ./a.out ~/data/soc-LiveJournal1.mtx
 # [04184.997 ms; 018 iters.] [3.1309e-01 err.] pagerank [damping=0.60]
 # [03957.167 ms; 017 iters.] [3.5808e-01 err.] pagerank [damping=0.55]
 # [03489.042 ms; 015 iters.] [3.9641e-01 err.] pagerank [damping=0.50]
+#
+# ...
 ```
+
+[![](https://i.imgur.com/sJVNiOU.gif)][sheets]
+[![](https://i.imgur.com/JGJOuoT.gif)][sheets]
 
 <br>
 <br>
@@ -66,16 +72,17 @@ $ ./a.out ~/data/soc-LiveJournal1.mtx
 
 ## References
 
-- [PageRank Algorithm, Mining massive Datasets (CS246), Stanford University][this lecture]
+- [PageRank Algorithm, Mining massive Datasets (CS246), Stanford University](http://snap.stanford.edu/class/cs246-videos-2019/lec9_190205-cs246-720.mp4)
 - [SuiteSparse Matrix Collection]
 
 <br>
 <br>
 
-[![](https://i.imgur.com/MwsC9Av.jpg)](https://www.youtube.com/watch?v=GRvZnN0iiwo)
+[![](https://i.imgur.com/CxwDsTm.jpg)](https://www.youtube.com/watch?v=jcqkqJnTydU)
 
-[this lecture]: http://snap.stanford.edu/class/cs246-videos-2019/lec9_190205-cs246-720.mp4
 [pull]: https://github.com/puzzlef/pagerank-push-vs-pull
 [CSR]: https://github.com/puzzlef/pagerank-class-vs-csr
+[charts]: https://photos.app.goo.gl/pNs2QeAfC2ainMMy5
+[sheets]: https://docs.google.com/spreadsheets/d/1wXeWc4yzw-TotI8hKkJeQXBQHimrgaeiASJKRypSNH4/edit?usp=sharing
 ["graphs"]: https://github.com/puzzlef/graphs
 [SuiteSparse Matrix Collection]: https://suitesparse-collection-website.herokuapp.com
