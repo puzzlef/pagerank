@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-src="pagerank-class-vs-csr"
+src="pagerank-adjust-damping-factor"
 out="/home/resources/Documents/subhajit/$src.log"
 ulimit -s unlimited
 printf "" > "$out"
