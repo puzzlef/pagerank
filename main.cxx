@@ -10,20 +10,24 @@ using namespace std;
 template <class G, class H>
 void runPagerank(const G& x, const H& xt, bool show) {
   int repeat = 5;
+  int L1 = 1, L2 = 2, Li = 3;
   vector<float> *init = nullptr;
 
-  // Find pagerank using default damping factor 0.85.
-  auto a1 = pagerankMonolithic(xt, init, {repeat});
-  auto e1 = absError(a1.ranks, a1.ranks);
-  printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerank\n", a1.time, a1.iterations, e1);
+  // Find pagerank using L1 norm for convergence check.
+  auto a1 = pagerankMonolithic(xt, init, {repeat, L1});
+  auto e1 = l1Norm(a1.ranks, a1.ranks);
+  printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerankL1Norm\n", a1.time, a1.iterations, e1);
   if (show) println(a1.ranks);
 
-  // Find pagerank using custom damping factors.
-  for (float damping=1.0f; damping>0.45f; damping-=0.05f) {
-    auto a2 = pagerankMonolithic(xt, init, {repeat, damping});
-    auto e2 = absError(a2.ranks, a1.ranks);
-    printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerank [damping=%.2f]\n", a2.time, a2.iterations, e2, damping);
-  }
+  // Find pagerank using L2 norm for convergence check.
+  auto a2 = pagerankMonolithic(xt, init, {repeat, L2});
+  auto e2 = l1Norm(a2.ranks, a1.ranks);
+  printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerankL2Norm\n", a2.time, a2.iterations, e2);
+
+  // Find pagerank using L∞ norm for convergence check.
+  auto a3 = pagerankMonolithic(xt, init, {repeat, Li});
+  auto e3 = l1Norm(a3.ranks, a1.ranks);
+  printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerankLiNorm\n", a3.time, a3.iterations, e3);
 }
 
 

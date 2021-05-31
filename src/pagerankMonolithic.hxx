@@ -36,7 +36,7 @@ void pagerankCalculate(vector<T>& a, const vector<T>& c, const vector<int>& vfro
 }
 
 template <class T>
-void pagerankError(const vector<T>& a, const vector<T>& r, int v, int V, int EF) {
+T pagerankError(const vector<T>& a, const vector<T>& r, int v, int V, int EF) {
   switch (EF) {
     case 1:  return l1Norm(a, r, v, V-v);
     case 2:  return l2Norm(a, r, v, V-v);
@@ -69,7 +69,7 @@ PagerankResult<T> pagerankMonolithic(const G& xt, const vector<T> *q=nullptr, Pa
   T    p  = o.damping;
   T    E  = o.tolerance;
   int  L  = o.maxIterations, l;
-  int  EF = o.convergenceNorm;
+  int  EF = o.toleranceNorm;
   auto vfrom = sourceOffsets(xt);
   auto efrom = destinationIndices(xt);
   auto vdata = vertexData(xt);
