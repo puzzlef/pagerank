@@ -1,21 +1,24 @@
-Comparing the effect of using different functions for convergence check, with
-PageRank ([pull], [CSR]).
+Comparing the effect of using different values of tolerance, with PageRank
+([pull], [CSR]).
 
 This experiment was for comparing the performance between:
 1. Find pagerank using **L1 norm** for convergence check.
 2. Find pagerank using **L2 norm** for convergence check.
 3. Find pagerank using **L∞ norm** for convergence check.
 
-Each approach was attempted on a number of graphs, running each approach 5
-times per graph to get a good time measure. Although [L1 norm] is commonly
+Each approach was attempted on a number of graphs, varying the tolerance from
+`10^-0` to `10^-10` for each [tolerance function]. Each pagerank computation
+is repeated 5 time to get a good time measure. Although [L1 norm] is commonly
 used for convergence check, it appears [nvGraph] uses [L2 norm] instead.
 Another person in stackoverflow seems to suggest the use of per-vertex tolerance
 comparision, which is essentially [L∞ norm]. Results show that **L∞ norm** is
 a faster convergence check for **all graphs**. For *road networks*, which have
-a large no. of vertices, using **L∞ norm** causes the ranks to converge in
-just `1` iteration. This is possibly because the per-vertex update of ranks
-is smaller than `10^-6`. Also note that **L2 norm** is normally slower than
-**L1 norm** for most graphs, but is faster for *road networks*, and a few others.
+a large no. of vertices, using **L∞ norm** is orders of magnitude faster. For
+smaller values of *tolerance* the ranks to converge in just `1` iteration too.
+This is possibly because the per-vertex update of ranks is smaller than `10^-6`.
+Also note that **L2 norm** is intially faster than **L1 norm**, but quickly
+slows down wrt **L1 norm** for most graphs. However, it is always faster for
+*road networks*.
 
 All outputs are saved in [out](out/) and a small part of the output is listed
 here. Some [charts] are also included below, generated from [sheets]. The input
@@ -103,8 +106,8 @@ $ ...
 # ...
 ```
 
-[![](https://i.imgur.com/f3OhDzO.gif)][sheets]
-[![](https://i.imgur.com/TJFfxtM.gif)][sheets]
+[![](https://i.imgur.com/J0sVbzJ.gif)][sheets]
+[![](https://i.imgur.com/BSVIYsB.gif)][sheets]
 
 <br>
 <br>
@@ -125,11 +128,12 @@ $ ...
 
 [pull]: https://github.com/puzzlef/pagerank-push-vs-pull
 [CSR]: https://github.com/puzzlef/pagerank-class-vs-csr
+[tolerance function]: https://github.com/puzzlef/pagerank-adjust-tolerance-function
 [nvGraph]: https://github.com/rapidsai/nvgraph
 [L1 norm]: https://github.com/rapidsai/nvgraph/blob/main/cpp/src/pagerank.cu#L154
 [L2 norm]: https://github.com/rapidsai/nvgraph/blob/main/cpp/src/pagerank.cu#L149
 [L∞ norm]: https://stackoverflow.com/a/29321153/1413259
-[charts]: https://photos.app.goo.gl/WpPKW5ZRj8qHJkPN8
-[sheets]: https://docs.google.com/spreadsheets/d/1TpoKE-WkbKvnym5zvm4-0CL-n5nRkxQkSM7f9qFKeLo/edit?usp=sharing
+[charts]: https://photos.app.goo.gl/stdoXDUhRcDvZqZb6
+[sheets]: https://docs.google.com/spreadsheets/d/1V-tanVXCIBemrC0jRtech5nA4sYUviwvUFC4G16oFKM/edit?usp=sharing
 ["graphs"]: https://github.com/puzzlef/graphs
 [SuiteSparse Matrix Collection]: https://suitesparse-collection-website.herokuapp.com
