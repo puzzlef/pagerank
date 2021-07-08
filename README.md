@@ -1,9 +1,11 @@
-Performance of *contribution-push* based vs *contribution-pull* based PageRank.
+Performance of **contribution-push** based vs **contribution-pull** based PageRank.
 
 There are two ways (algorithmically) to think of the pagerank calculation.
-1. Find pagerank by pushing contribution to out-vertices.
-2. Find pagerank by pulling contribution from in-vertices.
+1. Find pagerank by **pushing contribution** to *out-vertices*.
+2. Find pagerank by **pulling contribution** from *in-vertices*.
 
+This experiment was to try both of these approaches on a number of different
+graphs, running each approach 5 times per graph to get a good time measure.
 The **push** method is somewhat easier to implement, and is described in
 [this lecture]. However, it requires multiple writes per source vertex.
 On the other hand, the **pull** method requires 2 additional calculations
@@ -11,13 +13,19 @@ per-vertex, i.e., non-teleport contribution of each vertex, and, total
 teleport contribution (to all vertices). However, it requires only 1 write
 per destination vertex.
 
-The experiment was to try both of these approaches on a number of different
-graphs, running each approach 5 times per graph to get a good time measure.
-While it might seem that **pull** method would be a clear winner, the results
-indicate that although **pull** is always faster that **push** approach, the
-difference between the two depends on the nature of the graph. The data used
-for this experiment is available at ["graphs"] (for small ones), and the
-[SuiteSparse Matrix Collection].
+While it might seem that pull method would be a clear winner, the results
+indicate that although **pull** is always **faster** than *push* approach,
+the difference between the two depends on the nature of the graph. Note
+that neither approach makes use of *SIMD instructions* which are available
+on all modern hardware.
+
+All outputs are saved in [out](out/) and a small part of the output is listed
+here. Some [charts] are also included below, generated from [sheets]. The input
+data used for this experiment is available at ["graphs"] (for small ones), and
+the [SuiteSparse Matrix Collection]. This experiment was done with guidance
+from [Prof. Dip Sankar Banerjee] and [Prof. Kishore Kothapalli].
+
+<br>
 
 ```bash
 $ g++ -O3 main.cxx
@@ -25,29 +33,7 @@ $ ./a.out ~/data/min-1DeadEnd.mtx
 $ ./a.out ~/data/min-2SCC.mtx
 $ ...
 
-# Loading graph /home/subhajit/data/min-1DeadEnd.mtx ...
-# order: 5 size: 6 {}
-# order: 5 size: 6 {} (transposeWithDegree)
-# [00000.006 ms; 016 iters.] [0.0000e+00 err.] pagerankPush
-# [00000.006 ms; 016 iters.] [1.2666e-07 err.] pagerankPull
-#
-# Loading graph /home/subhajit/data/min-2SCC.mtx ...
-# order: 8 size: 12 {}
-# order: 8 size: 12 {} (transposeWithDegree)
-# [00000.008 ms; 039 iters.] [0.0000e+00 err.] pagerankPush
-# [00000.010 ms; 039 iters.] [2.2352e-08 err.] pagerankPull
-#
-# Loading graph /home/subhajit/data/min-4SCC.mtx ...
-# order: 21 size: 35 {}
-# order: 21 size: 35 {} (transposeWithDegree)
-# [00000.019 ms; 044 iters.] [0.0000e+00 err.] pagerankPush
-# [00000.024 ms; 044 iters.] [6.6124e-08 err.] pagerankPull
-#
-# Loading graph /home/subhajit/data/min-NvgraphEx.mtx ...
-# order: 6 size: 10 {}
-# order: 6 size: 10 {} (transposeWithDegree)
-# [00000.004 ms; 023 iters.] [0.0000e+00 err.] pagerankPush
-# [00000.005 ms; 023 iters.] [7.0781e-08 err.] pagerankPull
+# ...
 #
 # Loading graph /home/subhajit/data/web-Stanford.mtx ...
 # order: 281903 size: 2312497 {}
@@ -109,6 +95,8 @@ $ ...
 # ...
 ```
 
+[![](https://i.imgur.com/ACXh2li.png)][sheets]
+
 <br>
 <br>
 
@@ -123,6 +111,10 @@ $ ...
 
 [![](https://i.imgur.com/89cRRdY.jpg)](https://www.youtube.com/watch?v=iMdq5_5eib0)
 
-[this lecture]: http://snap.stanford.edu/class/cs246-videos-2019/lec9_190205-cs246-720.mp4
-["graphs"]: https://github.com/puzzlef/graphs
+[Prof. Dip Sankar Banerjee]: https://sites.google.com/site/dipsankarban/
+[Prof. Kishore Kothapalli]: https://cstar.iiit.ac.in/~kkishore/
 [SuiteSparse Matrix Collection]: https://suitesparse-collection-website.herokuapp.com
+[this lecture]: https://www.youtube.com/watch?v=ke9g8hB0MEo
+["graphs"]: https://github.com/puzzlef/graphs
+[charts]: https://photos.app.goo.gl/umv2CFa9Co2hkJge8
+[sheets]: https://docs.google.com/spreadsheets/d/1m_YsAGFIx_Qqcm7OlsIU72xCBKs1_gJbLkrvIbTVevc/edit?usp=sharing
