@@ -1,3 +1,5 @@
+#include <vector>
+#include <string>
 #include <cstdio>
 #include <iostream>
 #include "src/main.hxx"
@@ -8,8 +10,7 @@ using namespace std;
 
 
 template <class G, class H>
-void runPagerank(const G& x, const H& xt, bool show) {
-  int repeat = 5;
+void runPagerank(const G& x, const H& xt, int repeat) {
   int L1 = 1, L2 = 2, Li = 3;
   vector<float> *init = nullptr;
 
@@ -17,7 +18,6 @@ void runPagerank(const G& x, const H& xt, bool show) {
   auto a1 = pagerankMonolithic(xt, init, {repeat, L1});
   auto e1 = l1Norm(a1.ranks, a1.ranks);
   printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerankL1Norm\n", a1.time, a1.iterations, e1);
-  if (show) println(a1.ranks);
 
   // Find pagerank using L2 norm for convergence check.
   auto a2 = pagerankMonolithic(xt, init, {repeat, L2});
@@ -33,11 +33,11 @@ void runPagerank(const G& x, const H& xt, bool show) {
 
 int main(int argc, char **argv) {
   char *file = argv[1];
-  bool  show = argc > 2;
+  int repeat = argc>2? stoi(argv[2]) : 5;
   printf("Loading graph %s ...\n", file);
   auto x  = readMtx(file); println(x);
   auto xt = transposeWithDegree(x); print(xt); printf(" (transposeWithDegree)\n");
-  runPagerank(x, xt, show);
+  runPagerank(x, xt, repeat);
   printf("\n");
   return 0;
 }
