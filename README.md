@@ -1,9 +1,9 @@
-Comparing the effect of using different values of damping factor, with PageRank
-([pull], [CSR]).
+Comparing the effect of using different values of **damping factor**,
+with PageRank ([pull], [CSR]).
 
 For this experiment, the damping factor `d` (which is usually `0.85`) is
 varied from `0.50` to `1.00` in steps of `0.05`. This is in order to compare
-the performace variation with each damping factor. The calculated error
+the performance variation with each damping factor. The calculated error
 is the L1-norm wrt default pagerank (`d=0.85`). As expected, increasing
 the damping factor beyond `0.85` significantly increases convergence time,
 and lowering it below `0.85` decreases convergence time. Note that a higher
@@ -14,7 +14,8 @@ probability (and jumps to ransom page with lower probability). Also note that
 All outputs are saved in [out](out/) and a small part of the output is listed
 here. Some [charts] are also included below, generated from [sheets]. The input
 data used for this experiment is available at ["graphs"] (for small ones), and
-the [SuiteSparse Matrix Collection].
+the [SuiteSparse Matrix Collection]. This experiment was done with guidance
+from [Prof. Dip Sankar Banerjee] and [Prof. Kishore Kothapalli].
 
 <br>
 
@@ -72,7 +73,7 @@ $ ...
 
 ## References
 
-- [PageRank Algorithm, Mining massive Datasets (CS246), Stanford University](http://snap.stanford.edu/class/cs246-videos-2019/lec9_190205-cs246-720.mp4)
+- [PageRank Algorithm, Mining massive Datasets (CS246), Stanford University](https://www.youtube.com/watch?v=ke9g8hB0MEo)
 - [SuiteSparse Matrix Collection]
 
 <br>
@@ -80,9 +81,11 @@ $ ...
 
 [![](https://i.imgur.com/CxwDsTm.jpg)](https://www.youtube.com/watch?v=jcqkqJnTydU)
 
+[Prof. Dip Sankar Banerjee]: https://sites.google.com/site/dipsankarban/
+[Prof. Kishore Kothapalli]: https://cstar.iiit.ac.in/~kkishore/
+[SuiteSparse Matrix Collection]: https://suitesparse-collection-website.herokuapp.com
+["graphs"]: https://github.com/puzzlef/graphs
 [pull]: https://github.com/puzzlef/pagerank-push-vs-pull
 [CSR]: https://github.com/puzzlef/pagerank-class-vs-csr
 [charts]: https://photos.app.goo.gl/pNs2QeAfC2ainMMy5
 [sheets]: https://docs.google.com/spreadsheets/d/1wXeWc4yzw-TotI8hKkJeQXBQHimrgaeiASJKRypSNH4/edit?usp=sharing
-["graphs"]: https://github.com/puzzlef/graphs
-[SuiteSparse Matrix Collection]: https://suitesparse-collection-website.herokuapp.com
