@@ -1,5 +1,5 @@
-Comparing the effect of using different values of tolerance, with PageRank
-([pull], [CSR]).
+Comparing the effect of using **different values of tolerance**,
+with PageRank ([pull], [CSR]).
 
 This experiment was for comparing the performance between:
 1. Find pagerank using **L1 norm** for convergence check.
@@ -23,7 +23,8 @@ slows down wrt **L1 norm** for most graphs. However, it is always faster for
 All outputs are saved in [out](out/) and a small part of the output is listed
 here. Some [charts] are also included below, generated from [sheets]. The input
 data used for this experiment is available at ["graphs"] (for small ones), and
-the [SuiteSparse Matrix Collection].
+the [SuiteSparse Matrix Collection]. This experiment was done with guidance
+from [Prof. Dip Sankar Banerjee] and [Prof. Kishore Kothapalli].
 
 <br>
 
@@ -118,7 +119,7 @@ $ ...
 - [RAPIDS nvGraph NVIDIA graph library][nvGraph]
 - [How to check for Page Rank convergence?][L∞ norm]
 - [L0 Norm, L1 Norm, L2 Norm & L-Infinity Norm](https://montjoile.medium.com/l0-norm-l1-norm-l2-norm-l-infinity-norm-7a7d18a4f40c)
-- [PageRank Algorithm, Mining massive Datasets (CS246), Stanford University](http://snap.stanford.edu/class/cs246-videos-2019/lec9_190205-cs246-720.mp4)
+- [PageRank Algorithm, Mining massive Datasets (CS246), Stanford University](https://www.youtube.com/watch?v=ke9g8hB0MEo)
 - [SuiteSparse Matrix Collection]
 
 <br>
@@ -126,6 +127,10 @@ $ ...
 
 [![](https://i.imgur.com/p8R1WIk.jpg)](https://www.youtube.com/watch?v=04Uv44DRJAU)
 
+[Prof. Dip Sankar Banerjee]: https://sites.google.com/site/dipsankarban/
+[Prof. Kishore Kothapalli]: https://cstar.iiit.ac.in/~kkishore/
+[SuiteSparse Matrix Collection]: https://suitesparse-collection-website.herokuapp.com
+["graphs"]: https://github.com/puzzlef/graphs
 [pull]: https://github.com/puzzlef/pagerank-push-vs-pull
 [CSR]: https://github.com/puzzlef/pagerank-class-vs-csr
 [tolerance function]: https://github.com/puzzlef/pagerank-adjust-tolerance-function
@@ -135,5 +140,3 @@ $ ...
 [L∞ norm]: https://stackoverflow.com/a/29321153/1413259
 [charts]: https://photos.app.goo.gl/stdoXDUhRcDvZqZb6
 [sheets]: https://docs.google.com/spreadsheets/d/1V-tanVXCIBemrC0jRtech5nA4sYUviwvUFC4G16oFKM/edit?usp=sharing
-["graphs"]: https://github.com/puzzlef/graphs
-[SuiteSparse Matrix Collection]: https://suitesparse-collection-website.herokuapp.com
