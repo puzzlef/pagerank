@@ -52,8 +52,12 @@ $ ...
 # ...
 ```
 
-[![](https://i.imgur.com/f3OhDzO.gif)][sheets]
-[![](https://i.imgur.com/TJFfxtM.gif)][sheets]
+[![](https://i.imgur.com/JqT3hyq.png)][sheetp]
+[![](https://i.imgur.com/u3eYfas.png)][sheetp]
+[![](https://i.imgur.com/BL1vDBp.png)][sheetp]
+[![](https://i.imgur.com/gNACr6z.png)][sheetp]
+[![](https://i.imgur.com/f3OhDzO.gif)][sheetp]
+[![](https://i.imgur.com/TJFfxtM.gif)][sheetp]
 
 <br>
 <br>
@@ -84,3 +88,4 @@ $ ...
 [L∞ norm]: https://stackoverflow.com/a/29321153/1413259
 [charts]: https://photos.app.goo.gl/WpPKW5ZRj8qHJkPN8
 [sheets]: https://docs.google.com/spreadsheets/d/1TpoKE-WkbKvnym5zvm4-0CL-n5nRkxQkSM7f9qFKeLo/edit?usp=sharing
+[sheetp]: https://docs.google.com/spreadsheets/d/e/2PACX-1vSN6xnlxOz8u4PMYxUbxP01qFq8lrYa6IC8DH2pYFGkMmWD4-BB4jdk4e3Cp9Yh_GUG5SzF5OG7ZSex/pubhtml
