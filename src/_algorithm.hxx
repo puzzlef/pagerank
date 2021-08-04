@@ -481,7 +481,7 @@ V l1NormOmp(const vector<T>& x, const vector<U>& y, int i, int N, V a=V()) {
 template <class T, class U, class V=T>
 V l2Norm(const T *x, const U *y, int N, V a=V()) {
   for (int i=0; i<N; i++)
-    a += x[i]*x[i] - y[i]*y[i];
+    a += (x[i] - y[i]) * (x[i] - y[i]);
   return sqrt(a);
 }
 
@@ -500,7 +500,7 @@ template <class T, class U, class V=T>
 V l2NormOmp(const T *x, const U *y, int N, V a=V()) {
   #pragma omp parallel for schedule(static,4096) reduction(+:a)
   for (int i=0; i<N; i++)
-    a += x[i]*x[i] - y[i]*y[i];
+    a += (x[i] - y[i]) * (x[i] - y[i]);
   return sqrt(a);
 }
 
