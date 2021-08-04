@@ -20,7 +20,6 @@ void runPagerank(const G& x, const H& xt, int repeat) {
   auto a1 = pagerankMonolithic(xt, init, {repeat, damping});
   auto e1 = l1Norm(a1.ranks, a1.ranks);
   printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerank\n", a1.time, a1.iterations, e1);
-  if (show) println(a1.ranks);
 
   // Find pagerank using custom tolerance.
   for (int i=0; i<=20; i++) {
