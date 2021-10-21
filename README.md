@@ -1,4 +1,4 @@
-Comparing the effect of using different values of **damping factor**,
+Comparing the effect of using different **per-iteration rank scaling**,
 with PageRank ([pull], [CSR]).
 
 `TODO!`

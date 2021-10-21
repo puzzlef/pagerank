@@ -42,7 +42,7 @@ void pagerankCalculate(vector<T>& a, const vector<T>& c, const vector<int>& vfro
 // --------------
 
 template <class T>
-T pagerankScaleReduce(const vector<T>& r, int SF) {
+double pagerankScaleReduce(const vector<T>& r, int SF) {
   switch (SF) {
     default: return T();
     case 1:  return sumAbs(r, double());

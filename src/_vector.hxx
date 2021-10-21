@@ -1069,7 +1069,7 @@ void multiplyOmp(vector<T>& a, const vector<U>& x, const vector<V>& y, int i, in
 template <class T, class U, class V>
 void multiplyValue(T *a, const U *x, const V& y, int N) {
   for (int i=0; i<N; i++)
-    a[i] = x[i] * y;
+    a[i] = T(x[i] * y);
 }
 
 template <class T, class U, class V>
@@ -1087,7 +1087,7 @@ template <class T, class U, class V>
 void multiplyValueOmp(T *a, const U *x, const V& y, int N) {
   #pragma omp parallel for schedule(static,4096)
   for (int i=0; i<N; i++)
-    a[i] = x[i] * y;
+    a[i] = T(x[i] * y);
 }
 
 template <class T, class U, class V>
