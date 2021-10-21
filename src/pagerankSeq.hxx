@@ -35,6 +35,34 @@ void pagerankCalculate(vector<T>& a, const vector<T>& c, const vector<int>& vfro
     a[v] = c0 + sumAt(c, sliceIter(efrom, vfrom[v], vfrom[v+1]));
 }
 
+
+
+
+// PAGERANK-SCALE
+// --------------
+
+template <class T>
+T pagerankScaleReduce(const vector<T>& r, int SF) {
+  switch (SF) {
+    default: return T();
+    case 1:  return sumAbs(r, double());
+    case 2:  return sumSqr(r, double());
+  }
+}
+
+template <class T>
+void pagerankScale(vector<T>& a, int SF) {
+  if (SF==0) return;
+  double sf = pagerankScaleReduce(a, SF);
+  multiplyValue(a, a, 1.0/sf);
+}
+
+
+
+
+// PAGERANK-ERROR
+// --------------
+
 template <class T>
 T pagerankError(const vector<T>& x, const vector<T>& y, int i, int N, int EF) {
   switch (EF) {
@@ -46,12 +74,14 @@ T pagerankError(const vector<T>& x, const vector<T>& y, int i, int N, int EF) {
 
 
 template <class T>
-int pagerankSeqLoop(vector<T>& a, vector<T>& r, vector<T>& c, const vector<T>& f, const vector<int>& vfrom, const vector<int>& efrom, const vector<int>& vdata, int v, int V, int N, T p, T E, int L, int EF) {
+int pagerankSeqLoop(vector<T>& a, vector<T>& r, vector<T>& c, const vector<T>& f, const vector<int>& vfrom, const vector<int>& efrom, const vector<int>& vdata, int v, int V, int N, T p, T E, int L, int EF, int SF) {
   int l = 1;
+  pagerankScale(r, SF);
   for (; l<L; l++) {
     T c0 = pagerankTeleport(r, vfrom, efrom, vdata, v, V, N, p);
     multiply(c, r, f, v, V-v);
     pagerankCalculate(a, c, vfrom, efrom, vdata, v, V, N, c0);
+    pagerankScale(a, SF);
     T el = pagerankError(a, r, v, V-v, EF);
     if (el < E) break;
     swap(a, r);
@@ -71,6 +101,7 @@ PagerankResult<T> pagerankSeq(const G& xt, const vector<T> *q=nullptr, PagerankO
   T    E  = o.tolerance;
   int  L  = o.maxIterations, l;
   int  EF = o.toleranceNorm;
+  int  SF = o.scalingNorm;
   auto vfrom = sourceOffsets(xt);
   auto efrom = destinationIndices(xt);
   auto vdata = vertexData(xt);
@@ -82,7 +113,7 @@ PagerankResult<T> pagerankSeq(const G& xt, const vector<T> *q=nullptr, PagerankO
     if (q) copy(r, qc);
     else fill(r, T(1)/N);
     mark([&] { pagerankFactor(f, vfrom, efrom, vdata, 0, N, N, p); });
-    mark([&] { l = pagerankSeqLoop(a, r, c, f, vfrom, efrom, vdata, 0, N, N, p, E, L, EF); });
+    mark([&] { l = pagerankSeqLoop(a, r, c, f, vfrom, efrom, vdata, 0, N, N, p, E, L, EF, SF); });
   }, o.repeat);
   return {decompressContainer(xt, a), l, t};
 }

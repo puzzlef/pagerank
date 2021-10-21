@@ -11,18 +11,33 @@ using namespace std;
 
 template <class G, class H>
 void runPagerank(const G& x, const H& xt, int repeat) {
+  enum NormFunction { L0=0, L1=1, L2=2, Li=3 };
   vector<float> *init = nullptr;
 
-  // Find pagerank using default damping factor 0.85.
-  auto a1 = pagerankMonolithic(xt, init, {repeat});
-  auto e1 = absError(a1.ranks, a1.ranks);
-  printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerank\n", a1.time, a1.iterations, e1);
+  // Find pagerank using defaults (L1 norm, no scaling).
+  auto a0 = pagerankSeq(xt, init, {repeat});
+  auto e0 = l1Norm(a0.ranks, a0.ranks);
+  printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerank\n", a0.time, a0.iterations, e0);
 
-  // Find pagerank using custom damping factors.
-  for (float damping=1.0f; damping>0.45f; damping-=0.05f) {
-    auto a2 = pagerankMonolithic(xt, init, {repeat, damping});
-    auto e2 = absError(a2.ranks, a1.ranks);
-    printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerank [damping=%.2f]\n", a2.time, a2.iterations, e2, damping);
+  // Find pagerank using L1 norm.
+  for (int IS=L0; IS<=L2; IS++) {
+    auto a1 = pagerankSeq(xt, init, {repeat, L1, IS});
+    auto e1 = l1Norm(a1.ranks, a0.ranks);
+    printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerankL1Norm [iteration-scaling=L%d]\n", a1.time, a1.iterations, e1, IS);
+  }
+
+  // Find pagerank using L2 norm.
+  for (int IS=L0; IS<=L2; IS++) {
+    auto a2 = pagerankSeq(xt, init, {repeat, L2, IS});
+    auto e2 = l1Norm(a2.ranks, a0.ranks);
+    printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerankL2Norm [iteration-scaling=L%d]\n", a2.time, a2.iterations, e2, IS);
+  }
+
+  // Find pagerank using L∞ norm.
+  for (int IS=L0; IS<=L2; IS++) {
+    auto a3 = pagerankSeq(xt, init, {repeat, Li, IS});
+    auto e3 = l1Norm(a3.ranks, a0.ranks);
+    printf("[%09.3f ms; %03d iters.] [%.4e err.] pagerankLiNorm [iteration-scaling=L%d]\n", a3.time, a3.iterations, e3, IS);
   }
 }
 

@@ -432,6 +432,48 @@ U sumAbsOmp(const vector<T>& x, int i, int N, U a=U()) {
 
 
 
+// SUM-SQR
+// -------
+
+template <class T, class U=T>
+U sumSqr(const T *x, int N, U a=U()) {
+  for (int i=0; i<N; i++)
+    a += x[i]*x[i];
+  return a;
+}
+
+template <class T, class U=T>
+U sumSqr(const vector<T>& x, U a=U()) {
+  return sumSqr(x.data(), int(x.size()), a);
+}
+
+template <class T, class U=T>
+U sumSqr(const vector<T>& x, int i, int N, U a=U()) {
+  return sumSqr(x.data()+i, N, a);
+}
+
+
+template <class T, class U=T>
+U sumSqrOmp(const T *x, int N, U a=U()) {
+  #pragma omp parallel for schedule(static,4096) reduction(+:a)
+  for (int i=0; i<N; i++)
+    a += x[i]*x[i];
+  return a;
+}
+
+template <class T, class U=T>
+U sumSqrOmp(const vector<T>& x, U a=U()) {
+  return sumSqrOmp(x.data(), int(x.size()), a);
+}
+
+template <class T, class U=T>
+U sumSqrOmp(const vector<T>& x, int i, int N, U a=U()) {
+  return sumSqrOmp(x.data()+i, N, a);
+}
+
+
+
+
 // SUM-AT
 // ------
 
