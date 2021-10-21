@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-src="pagerank-adjust-damping-factor"
+src="pagerank-adjust-iteration-scaling"
 out="/home/resources/Documents/subhajit/$src.log"
 ulimit -s unlimited
 printf "" > "$out"
