@@ -1,0 +1,293 @@
+Loading graph /kaggle/input/graphs/min-1DeadEnd.mtx ...
+order: 5 size: 6 {}
+order: 5 size: 6 {} (transposeWithDegree)
+[00000.000 ms; 017 iters.] [0.0000e+00 err.] pagerank
+[00000.000 ms; 017 iters.] [9.6858e-08 err.] pagerankL1Norm [iteration-scaling=L0]
+[00000.000 ms; 017 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[00000.001 ms; 020 iters.] [9.1017e-01 err.] pagerankL1Norm [iteration-scaling=L2]
+[00000.000 ms; 017 iters.] [9.6858e-08 err.] pagerankL2Norm [iteration-scaling=L0]
+[00000.000 ms; 017 iters.] [0.0000e+00 err.] pagerankL2Norm [iteration-scaling=L1]
+[00000.001 ms; 020 iters.] [9.1017e-01 err.] pagerankL2Norm [iteration-scaling=L2]
+[00000.000 ms; 017 iters.] [9.6858e-08 err.] pagerankLiNorm [iteration-scaling=L0]
+[00000.000 ms; 017 iters.] [0.0000e+00 err.] pagerankLiNorm [iteration-scaling=L1]
+[00000.001 ms; 019 iters.] [9.1017e-01 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/min-2SCC.mtx ...
+order: 8 size: 12 {}
+order: 8 size: 12 {} (transposeWithDegree)
+[00000.002 ms; 040 iters.] [0.0000e+00 err.] pagerank
+[00000.002 ms; 040 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L0]
+[00000.002 ms; 040 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[00000.004 ms; 061 iters.] [1.1472e+00 err.] pagerankL1Norm [iteration-scaling=L2]
+[00000.001 ms; 038 iters.] [1.4454e-06 err.] pagerankL2Norm [iteration-scaling=L0]
+[00000.002 ms; 038 iters.] [1.4454e-06 err.] pagerankL2Norm [iteration-scaling=L1]
+[00000.004 ms; 058 iters.] [1.1472e+00 err.] pagerankL2Norm [iteration-scaling=L2]
+[00000.001 ms; 037 iters.] [1.1325e-06 err.] pagerankLiNorm [iteration-scaling=L0]
+[00000.002 ms; 037 iters.] [1.1325e-06 err.] pagerankLiNorm [iteration-scaling=L1]
+[00000.005 ms; 056 iters.] [1.1472e+00 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/min-4SCC.mtx ...
+order: 21 size: 35 {}
+order: 21 size: 35 {} (transposeWithDegree)
+[00000.009 ms; 045 iters.] [0.0000e+00 err.] pagerank
+[00000.005 ms; 045 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L0]
+[00000.007 ms; 045 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[00000.014 ms; 084 iters.] [2.5697e+00 err.] pagerankL1Norm [iteration-scaling=L2]
+[00000.004 ms; 041 iters.] [1.1362e-06 err.] pagerankL2Norm [iteration-scaling=L0]
+[00000.006 ms; 041 iters.] [1.1362e-06 err.] pagerankL2Norm [iteration-scaling=L1]
+[00000.019 ms; 079 iters.] [2.5697e+00 err.] pagerankL2Norm [iteration-scaling=L2]
+[00000.004 ms; 040 iters.] [1.6391e-06 err.] pagerankLiNorm [iteration-scaling=L0]
+[00000.009 ms; 040 iters.] [1.6391e-06 err.] pagerankLiNorm [iteration-scaling=L1]
+[00000.012 ms; 075 iters.] [2.5697e+00 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/min-NvgraphEx.mtx ...
+order: 6 size: 10 {}
+order: 6 size: 10 {} (transposeWithDegree)
+[00000.001 ms; 024 iters.] [0.0000e+00 err.] pagerank
+[00000.000 ms; 024 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L0]
+[00000.001 ms; 024 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[00000.001 ms; 026 iters.] [8.8869e-01 err.] pagerankL1Norm [iteration-scaling=L2]
+[00000.000 ms; 023 iters.] [9.4995e-07 err.] pagerankL2Norm [iteration-scaling=L0]
+[00000.001 ms; 023 iters.] [9.4995e-07 err.] pagerankL2Norm [iteration-scaling=L1]
+[00000.001 ms; 025 iters.] [8.8869e-01 err.] pagerankL2Norm [iteration-scaling=L2]
+[00000.000 ms; 022 iters.] [2.4810e-06 err.] pagerankLiNorm [iteration-scaling=L0]
+[00000.001 ms; 022 iters.] [2.4810e-06 err.] pagerankLiNorm [iteration-scaling=L1]
+[00000.001 ms; 024 iters.] [8.8869e-01 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/web-Stanford.mtx ...
+order: 281903 size: 2312497 {}
+order: 281903 size: 2312497 {} (transposeWithDegree)
+[00512.647 ms; 063 iters.] [0.0000e+00 err.] pagerank
+[00478.770 ms; 063 iters.] [3.1209e-06 err.] pagerankL1Norm [iteration-scaling=L0]
+[00509.010 ms; 063 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[04056.955 ms; 500 iters.] [3.4929e+01 err.] pagerankL1Norm [iteration-scaling=L2]
+[00333.607 ms; 044 iters.] [3.7375e-05 err.] pagerankL2Norm [iteration-scaling=L0]
+[00357.263 ms; 044 iters.] [3.5956e-05 err.] pagerankL2Norm [iteration-scaling=L1]
+[04062.980 ms; 500 iters.] [3.4929e+01 err.] pagerankL2Norm [iteration-scaling=L2]
+[00307.149 ms; 041 iters.] [6.2246e-05 err.] pagerankLiNorm [iteration-scaling=L0]
+[00331.040 ms; 041 iters.] [6.1226e-05 err.] pagerankLiNorm [iteration-scaling=L1]
+[04064.842 ms; 500 iters.] [3.4929e+01 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/web-BerkStan.mtx ...
+order: 685230 size: 7600595 {}
+order: 685230 size: 7600595 {} (transposeWithDegree)
+[01141.708 ms; 064 iters.] [0.0000e+00 err.] pagerank
+[01045.680 ms; 064 iters.] [1.5218e-05 err.] pagerankL1Norm [iteration-scaling=L0]
+[01135.989 ms; 064 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[08867.171 ms; 500 iters.] [4.5681e+01 err.] pagerankL1Norm [iteration-scaling=L2]
+[00698.542 ms; 043 iters.] [4.6457e-05 err.] pagerankL2Norm [iteration-scaling=L0]
+[00771.889 ms; 043 iters.] [4.6805e-05 err.] pagerankL2Norm [iteration-scaling=L1]
+[08870.778 ms; 500 iters.] [4.5681e+01 err.] pagerankL2Norm [iteration-scaling=L2]
+[00606.572 ms; 037 iters.] [1.3731e-04 err.] pagerankLiNorm [iteration-scaling=L0]
+[00659.606 ms; 037 iters.] [1.3903e-04 err.] pagerankLiNorm [iteration-scaling=L1]
+[08888.193 ms; 500 iters.] [4.5681e+01 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/web-Google.mtx ...
+order: 916428 size: 5105039 {}
+order: 916428 size: 5105039 {} (transposeWithDegree)
+[01813.783 ms; 062 iters.] [0.0000e+00 err.] pagerank
+[01640.350 ms; 061 iters.] [5.1310e-04 err.] pagerankL1Norm [iteration-scaling=L0]
+[01800.358 ms; 062 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[14370.214 ms; 500 iters.] [7.2298e+01 err.] pagerankL1Norm [iteration-scaling=L2]
+[01053.020 ms; 040 iters.] [5.0830e-04 err.] pagerankL2Norm [iteration-scaling=L0]
+[01128.224 ms; 039 iters.] [8.9355e-05 err.] pagerankL2Norm [iteration-scaling=L1]
+[14297.734 ms; 500 iters.] [7.2298e+01 err.] pagerankL2Norm [iteration-scaling=L2]
+[00960.368 ms; 036 iters.] [5.3262e-04 err.] pagerankLiNorm [iteration-scaling=L0]
+[01048.550 ms; 036 iters.] [1.5253e-04 err.] pagerankLiNorm [iteration-scaling=L1]
+[14732.606 ms; 500 iters.] [7.2298e+01 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/web-NotreDame.mtx ...
+order: 325729 size: 1497134 {}
+order: 325729 size: 1497134 {} (transposeWithDegree)
+[00304.237 ms; 059 iters.] [0.0000e+00 err.] pagerank
+[00256.835 ms; 058 iters.] [7.7278e-04 err.] pagerankL1Norm [iteration-scaling=L0]
+[00309.082 ms; 059 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[02567.150 ms; 500 iters.] [2.0207e+01 err.] pagerankL1Norm [iteration-scaling=L2]
+[00176.614 ms; 040 iters.] [7.7969e-04 err.] pagerankL2Norm [iteration-scaling=L0]
+[00208.640 ms; 040 iters.] [9.5610e-05 err.] pagerankL2Norm [iteration-scaling=L1]
+[02541.701 ms; 500 iters.] [2.0207e+01 err.] pagerankL2Norm [iteration-scaling=L2]
+[00167.242 ms; 038 iters.] [7.8028e-04 err.] pagerankLiNorm [iteration-scaling=L0]
+[00190.698 ms; 037 iters.] [1.6454e-04 err.] pagerankLiNorm [iteration-scaling=L1]
+[02513.866 ms; 500 iters.] [2.0207e+01 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/soc-Slashdot0811.mtx ...
+order: 77360 size: 905468 {}
+order: 77360 size: 905468 {} (transposeWithDegree)
+[00110.734 ms; 055 iters.] [0.0000e+00 err.] pagerank
+[00101.865 ms; 055 iters.] [5.7577e-08 err.] pagerankL1Norm [iteration-scaling=L0]
+[00111.205 ms; 055 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[01015.237 ms; 500 iters.] [7.4784e+01 err.] pagerankL1Norm [iteration-scaling=L2]
+[00053.916 ms; 029 iters.] [4.2705e-04 err.] pagerankL2Norm [iteration-scaling=L0]
+[00058.532 ms; 029 iters.] [4.2704e-04 err.] pagerankL2Norm [iteration-scaling=L1]
+[01009.430 ms; 500 iters.] [7.4784e+01 err.] pagerankL2Norm [iteration-scaling=L2]
+[00041.263 ms; 020 iters.] [1.9667e-03 err.] pagerankLiNorm [iteration-scaling=L0]
+[00041.066 ms; 020 iters.] [1.9667e-03 err.] pagerankLiNorm [iteration-scaling=L1]
+[01015.633 ms; 500 iters.] [7.4784e+01 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/soc-Slashdot0902.mtx ...
+order: 82168 size: 948464 {}
+order: 82168 size: 948464 {} (transposeWithDegree)
+[00121.565 ms; 056 iters.] [0.0000e+00 err.] pagerank
+[00111.630 ms; 056 iters.] [4.5458e-06 err.] pagerankL1Norm [iteration-scaling=L0]
+[00122.656 ms; 056 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[01105.088 ms; 500 iters.] [7.8247e+01 err.] pagerankL1Norm [iteration-scaling=L2]
+[00059.528 ms; 029 iters.] [5.0103e-04 err.] pagerankL2Norm [iteration-scaling=L0]
+[00064.235 ms; 029 iters.] [5.0402e-04 err.] pagerankL2Norm [iteration-scaling=L1]
+[01094.627 ms; 500 iters.] [7.8247e+01 err.] pagerankL2Norm [iteration-scaling=L2]
+[00042.570 ms; 021 iters.] [1.9690e-03 err.] pagerankLiNorm [iteration-scaling=L0]
+[00046.560 ms; 021 iters.] [1.9707e-03 err.] pagerankLiNorm [iteration-scaling=L1]
+[01096.511 ms; 500 iters.] [7.8247e+01 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/soc-Epinions1.mtx ...
+order: 75888 size: 508837 {}
+order: 75888 size: 508837 {} (transposeWithDegree)
+[00095.537 ms; 054 iters.] [0.0000e+00 err.] pagerank
+[00088.678 ms; 054 iters.] [2.6039e-05 err.] pagerankL1Norm [iteration-scaling=L0]
+[00097.718 ms; 054 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[00901.149 ms; 500 iters.] [3.7544e+01 err.] pagerankL1Norm [iteration-scaling=L2]
+[00061.914 ms; 038 iters.] [4.3152e-05 err.] pagerankL2Norm [iteration-scaling=L0]
+[00067.282 ms; 038 iters.] [1.9439e-05 err.] pagerankL2Norm [iteration-scaling=L1]
+[00877.715 ms; 500 iters.] [3.7544e+01 err.] pagerankL2Norm [iteration-scaling=L2]
+[00051.556 ms; 032 iters.] [7.6329e-05 err.] pagerankLiNorm [iteration-scaling=L0]
+[00056.747 ms; 032 iters.] [5.4359e-05 err.] pagerankLiNorm [iteration-scaling=L1]
+[00890.125 ms; 500 iters.] [3.7544e+01 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/coAuthorsDBLP.mtx ...
+order: 299067 size: 1955352 {}
+order: 299067 size: 1955352 {} (transposeWithDegree)
+[00316.064 ms; 045 iters.] [0.0000e+00 err.] pagerank
+[00289.290 ms; 045 iters.] [1.2043e-08 err.] pagerankL1Norm [iteration-scaling=L0]
+[00313.648 ms; 045 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[03524.891 ms; 500 iters.] [3.0275e+02 err.] pagerankL1Norm [iteration-scaling=L2]
+[00138.353 ms; 022 iters.] [4.7959e-04 err.] pagerankL2Norm [iteration-scaling=L0]
+[00153.019 ms; 022 iters.] [4.7959e-04 err.] pagerankL2Norm [iteration-scaling=L1]
+[03465.736 ms; 500 iters.] [3.0275e+02 err.] pagerankL2Norm [iteration-scaling=L2]
+[00115.286 ms; 018 iters.] [1.1653e-03 err.] pagerankLiNorm [iteration-scaling=L0]
+[00127.110 ms; 018 iters.] [1.1653e-03 err.] pagerankLiNorm [iteration-scaling=L1]
+[03445.303 ms; 500 iters.] [3.0275e+02 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/coAuthorsCiteseer.mtx ...
+order: 227320 size: 1628268 {}
+order: 227320 size: 1628268 {} (transposeWithDegree)
+[00250.120 ms; 048 iters.] [0.0000e+00 err.] pagerank
+[00226.055 ms; 048 iters.] [1.2854e-07 err.] pagerankL1Norm [iteration-scaling=L0]
+[00252.181 ms; 048 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[02615.699 ms; 500 iters.] [2.6946e+02 err.] pagerankL1Norm [iteration-scaling=L2]
+[00109.533 ms; 023 iters.] [5.0504e-04 err.] pagerankL2Norm [iteration-scaling=L0]
+[00121.709 ms; 023 iters.] [5.0506e-04 err.] pagerankL2Norm [iteration-scaling=L1]
+[02638.600 ms; 500 iters.] [2.6946e+02 err.] pagerankL2Norm [iteration-scaling=L2]
+[00077.320 ms; 016 iters.] [2.1820e-03 err.] pagerankLiNorm [iteration-scaling=L0]
+[00084.744 ms; 016 iters.] [2.1820e-03 err.] pagerankLiNorm [iteration-scaling=L1]
+[02654.702 ms; 500 iters.] [2.6946e+02 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/soc-LiveJournal1.mtx ...
+order: 4847571 size: 68993773 {}
+order: 4847571 size: 68993773 {} (transposeWithDegree)
+[17149.053 ms; 051 iters.] [0.0000e+00 err.] pagerank
+[16213.541 ms; 051 iters.] [2.0183e-03 err.] pagerankL1Norm [iteration-scaling=L0]
+[16284.422 ms; 051 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[151491.594 ms; 500 iters.] [1.1154e+02 err.] pagerankL1Norm [iteration-scaling=L2]
+[07316.385 ms; 024 iters.] [1.9483e-03 err.] pagerankL2Norm [iteration-scaling=L0]
+[07709.803 ms; 024 iters.] [4.0670e-04 err.] pagerankL2Norm [iteration-scaling=L1]
+[157767.719 ms; 500 iters.] [1.1154e+02 err.] pagerankL2Norm [iteration-scaling=L2]
+[05393.280 ms; 017 iters.] [1.9993e-03 err.] pagerankLiNorm [iteration-scaling=L0]
+[05793.659 ms; 017 iters.] [1.7121e-03 err.] pagerankLiNorm [iteration-scaling=L1]
+[153291.781 ms; 500 iters.] [1.1154e+02 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/coPapersCiteseer.mtx ...
+order: 434102 size: 32073440 {}
+order: 434102 size: 32073440 {} (transposeWithDegree)
+[02587.773 ms; 051 iters.] [0.0000e+00 err.] pagerank
+[02548.286 ms; 051 iters.] [2.9698e-10 err.] pagerankL1Norm [iteration-scaling=L0]
+[02628.601 ms; 051 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[25427.023 ms; 500 iters.] [3.9809e+02 err.] pagerankL1Norm [iteration-scaling=L2]
+[01006.529 ms; 020 iters.] [1.5957e-03 err.] pagerankL2Norm [iteration-scaling=L0]
+[01026.962 ms; 020 iters.] [1.5957e-03 err.] pagerankL2Norm [iteration-scaling=L1]
+[25451.459 ms; 500 iters.] [3.9809e+02 err.] pagerankL2Norm [iteration-scaling=L2]
+[00246.724 ms; 005 iters.] [4.6208e-02 err.] pagerankLiNorm [iteration-scaling=L0]
+[00255.228 ms; 005 iters.] [4.6208e-02 err.] pagerankLiNorm [iteration-scaling=L1]
+[25785.582 ms; 500 iters.] [3.9809e+02 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/coPapersDBLP.mtx ...
+order: 540486 size: 30491458 {}
+order: 540486 size: 30491458 {} (transposeWithDegree)
+[02496.158 ms; 049 iters.] [0.0000e+00 err.] pagerank
+[02436.189 ms; 049 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L0]
+[02506.317 ms; 049 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[25836.443 ms; 500 iters.] [4.7824e+02 err.] pagerankL1Norm [iteration-scaling=L2]
+[00982.923 ms; 019 iters.] [1.8788e-03 err.] pagerankL2Norm [iteration-scaling=L0]
+[01017.803 ms; 019 iters.] [1.8788e-03 err.] pagerankL2Norm [iteration-scaling=L1]
+[26383.256 ms; 500 iters.] [4.7824e+02 err.] pagerankL2Norm [iteration-scaling=L2]
+[00364.193 ms; 007 iters.] [2.9598e-02 err.] pagerankLiNorm [iteration-scaling=L0]
+[00370.218 ms; 007 iters.] [2.9598e-02 err.] pagerankLiNorm [iteration-scaling=L1]
+[25868.381 ms; 500 iters.] [4.7824e+02 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/indochina-2004.mtx ...
+order: 7414866 size: 194109311 {}
+order: 7414866 size: 194109311 {} (transposeWithDegree)
+[22277.369 ms; 060 iters.] [0.0000e+00 err.] pagerank
+[21566.260 ms; 061 iters.] [7.7840e-04 err.] pagerankL1Norm [iteration-scaling=L0]
+[22264.332 ms; 060 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[184823.797 ms; 500 iters.] [6.8554e+01 err.] pagerankL1Norm [iteration-scaling=L2]
+[12771.198 ms; 036 iters.] [7.1837e-04 err.] pagerankL2Norm [iteration-scaling=L0]
+[13354.084 ms; 036 iters.] [1.6629e-04 err.] pagerankL2Norm [iteration-scaling=L1]
+[184521.453 ms; 500 iters.] [6.8554e+01 err.] pagerankL2Norm [iteration-scaling=L2]
+[10637.953 ms; 030 iters.] [7.7700e-04 err.] pagerankLiNorm [iteration-scaling=L0]
+[11217.539 ms; 030 iters.] [5.1444e-04 err.] pagerankLiNorm [iteration-scaling=L1]
+[185233.844 ms; 500 iters.] [6.8554e+01 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/italy_osm.mtx ...
+order: 6686493 size: 14027956 {}
+order: 6686493 size: 14027956 {} (transposeWithDegree)
+[06724.104 ms; 063 iters.] [0.0000e+00 err.] pagerank
+[05795.869 ms; 063 iters.] [2.7982e-08 err.] pagerankL1Norm [iteration-scaling=L0]
+[06719.946 ms; 063 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[52846.289 ms; 500 iters.] [2.5934e+03 err.] pagerankL1Norm [iteration-scaling=L2]
+[01836.984 ms; 020 iters.] [6.6253e-04 err.] pagerankL2Norm [iteration-scaling=L0]
+[02147.276 ms; 020 iters.] [6.6253e-04 err.] pagerankL2Norm [iteration-scaling=L1]
+[52652.039 ms; 500 iters.] [2.5934e+03 err.] pagerankL2Norm [iteration-scaling=L2]
+[00103.628 ms; 001 iters.] [3.7756e-02 err.] pagerankLiNorm [iteration-scaling=L0]
+[00137.433 ms; 001 iters.] [3.7756e-02 err.] pagerankLiNorm [iteration-scaling=L1]
+[53252.738 ms; 500 iters.] [2.5934e+03 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/great-britain_osm.mtx ...
+order: 7733822 size: 16313034 {}
+order: 7733822 size: 16313034 {} (transposeWithDegree)
+[09600.201 ms; 067 iters.] [0.0000e+00 err.] pagerank
+[08438.694 ms; 067 iters.] [5.9454e-08 err.] pagerankL1Norm [iteration-scaling=L0]
+[09670.713 ms; 067 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[72187.586 ms; 500 iters.] [2.5924e+03 err.] pagerankL1Norm [iteration-scaling=L2]
+[02947.246 ms; 023 iters.] [8.0940e-04 err.] pagerankL2Norm [iteration-scaling=L0]
+[03393.211 ms; 023 iters.] [8.0939e-04 err.] pagerankL2Norm [iteration-scaling=L1]
+[72608.312 ms; 500 iters.] [2.5924e+03 err.] pagerankL2Norm [iteration-scaling=L2]
+[00141.676 ms; 001 iters.] [7.8761e-02 err.] pagerankLiNorm [iteration-scaling=L0]
+[00175.590 ms; 001 iters.] [7.8761e-02 err.] pagerankLiNorm [iteration-scaling=L1]
+[71973.672 ms; 500 iters.] [2.5924e+03 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/germany_osm.mtx ...
+order: 11548845 size: 24738362 {}
+order: 11548845 size: 24738362 {} (transposeWithDegree)
+[15351.467 ms; 065 iters.] [0.0000e+00 err.] pagerank
+[13878.477 ms; 065 iters.] [6.5512e-08 err.] pagerankL1Norm [iteration-scaling=L0]
+[15551.909 ms; 065 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[118037.938 ms; 500 iters.] [3.2122e+03 err.] pagerankL1Norm [iteration-scaling=L2]
+[04472.837 ms; 021 iters.] [9.3146e-04 err.] pagerankL2Norm [iteration-scaling=L0]
+[05013.128 ms; 021 iters.] [9.3146e-04 err.] pagerankL2Norm [iteration-scaling=L1]
+[119205.812 ms; 500 iters.] [3.2122e+03 err.] pagerankL2Norm [iteration-scaling=L2]
+[00233.011 ms; 001 iters.] [6.8314e-02 err.] pagerankLiNorm [iteration-scaling=L0]
+[00294.840 ms; 001 iters.] [6.8314e-02 err.] pagerankLiNorm [iteration-scaling=L1]
+[118304.062 ms; 500 iters.] [3.2122e+03 err.] pagerankLiNorm [iteration-scaling=L2]
+
+Loading graph /kaggle/input/graphs/asia_osm.mtx ...
+order: 11950757 size: 25423206 {}
+order: 11950757 size: 25423206 {} (transposeWithDegree)
+[12004.318 ms; 063 iters.] [0.0000e+00 err.] pagerank
+[10227.744 ms; 063 iters.] [5.5476e-08 err.] pagerankL1Norm [iteration-scaling=L0]
+[11898.002 ms; 063 iters.] [0.0000e+00 err.] pagerankL1Norm [iteration-scaling=L1]
+[93822.547 ms; 500 iters.] [3.2486e+03 err.] pagerankL1Norm [iteration-scaling=L2]
+[03078.141 ms; 019 iters.] [8.3823e-04 err.] pagerankL2Norm [iteration-scaling=L0]
+[03617.393 ms; 019 iters.] [8.3822e-04 err.] pagerankL2Norm [iteration-scaling=L1]
+[94336.070 ms; 500 iters.] [3.2486e+03 err.] pagerankL2Norm [iteration-scaling=L2]
+[00186.392 ms; 001 iters.] [4.3444e-02 err.] pagerankLiNorm [iteration-scaling=L0]
+[00245.903 ms; 001 iters.] [4.3444e-02 err.] pagerankLiNorm [iteration-scaling=L1]
+[93625.391 ms; 500 iters.] [3.2486e+03 err.] pagerankLiNorm [iteration-scaling=L2]
