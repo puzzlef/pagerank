@@ -31,8 +31,8 @@ int main(int argc, char **argv) {
   int repeat = argc>2? stoi(argv[2]) : 5;
   printf("Loading graph %s ...\n", file);
   auto x  = readMtxOutDiGraph(file);  println(x);
-  auto fl = [](auto u) { return true; };
-  selfLoopU(x, None(), fl); print(x); printf(" (selfLoopAllVertices)\n");
+  // auto fl = [](auto u) { return true; };
+  // selfLoopU(x, None(), fl); print(x); printf(" (selfLoopAllVertices)\n");
   auto xt = transposeWithDegree(x);   print(xt); printf(" (transposeWithDegree)\n");
   runPagerank(x, xt, repeat);
   printf("\n");
