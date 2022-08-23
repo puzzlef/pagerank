@@ -18,14 +18,15 @@ using std::swap;
 
 template <class T>
 int pagerankMonolithicSeqLoopU(vector<T>& a, vector<T>& r, vector<T>& c, const vector<T>& f, const vector<int>& vfrom, const vector<int>& efrom, const vector<int>& vdata, int i, int n, int N, T p, T E, int L, int EF) {
-  int l = 0;
+  int  l = 0;
+  bool O = a.data()==r.data();
   while (l<L) {
     T c0 = pagerankTeleport(r, vdata, N, p);
-    pagerankCalculateW(a, c, vfrom, efrom, i, n, c0);  // assume contribtions (c) is precalculated
-    T el = pagerankError(a, r, i, n, EF); ++l;         // one iteration complete
-    if (el<E || l>=L) break;                           // check tolerance, iteration limit
+    pagerankCalculateW(a, c, vfrom, efrom, i, n, c0);  // update ranks of vertices
     multiplyValuesW(c, a, f, i, n);                    // update partial contributions (c)
-    swap(a, r);                                        // final ranks always in (a)
+    T el = pagerankError(a, r, i, n, EF); ++l;         // compare previous and current ranks
+    if (!O) swap(a, r);                                // final ranks in (r)
+    if (el<E) break;                                   // check tolerance
   }
   return l;
 }
