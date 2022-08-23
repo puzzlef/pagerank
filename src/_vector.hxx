@@ -788,6 +788,22 @@ inline V l1Norm(const vector<TX>& x, const vector<TY>& y, size_t i, size_t N, V 
 }
 
 
+template <class T, class V=T>
+V l1Norm(const T *x, size_t N, V a=V()) {
+  for (size_t i=0; i<N; i++)
+    a += abs(x[i]);
+  return a;
+}
+template <class T, class V=T>
+inline V l1Norm(const vector<T>& x, V a=V()) {
+  return l1Norm(x.data(), x.size(), a);
+}
+template <class T, class V=T>
+inline V l1Norm(const vector<T>& x, size_t i, size_t N, V a=V()) {
+  return l1Norm(x.data()+i, N, a);
+}
+
+
 
 
 // L2-NORM
@@ -809,6 +825,22 @@ inline V l2Norm(const vector<TX>& x, const vector<TY>& y, size_t i, size_t N, V 
 }
 
 
+template <class T, class V=T>
+V l2Norm(const T *x, size_t N, V a=V()) {
+  for (size_t i=0; i<N; i++)
+    a += x[i] * x[i];
+  return sqrt(a);
+}
+template <class T, class V=T>
+inline V l2Norm(const vector<T>& x, V a=V()) {
+  return l2Norm(x.data(), x.size(), a);
+}
+template <class T, class V=T>
+inline V l2Norm(const vector<T>& x, size_t i, size_t N, V a=V()) {
+  return l2Norm(x.data()+i, N, a);
+}
+
+
 
 
 // LI-NORM (INFINITY)
@@ -827,6 +859,22 @@ inline V liNorm(const vector<TX>& x, const vector<TY>& y, V a=V()) {
 template <class TX, class TY, class V=TX>
 inline V liNorm(const vector<TX>& x, const vector<TY>& y, size_t i, size_t N, V a=V()) {
   return liNorm(x.data()+i, y.data()+i, N, a);
+}
+
+
+template <class T, class V=T>
+V liNorm(const T *x, size_t N, V a=V()) {
+  for (size_t i=0; i<N; i++)
+    a = max(a, abs(x[i]));
+  return a;
+}
+template <class T, class V=T>
+inline V liNorm(const vector<T>& x, V a=V()) {
+  return liNorm(x.data(), x.size(), a);
+}
+template <class T, class V=T>
+inline V liNorm(const vector<T>& x, size_t i, size_t N, V a=V()) {
+  return liNorm(x.data()+i, N, a);
 }
 
 

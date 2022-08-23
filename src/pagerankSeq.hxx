@@ -53,6 +53,17 @@ void pagerankCalculateW(vector<T>& a, const vector<T>& c, const vector<int>& vfr
     a[v] = c0 + sumValuesAt(c, sliceIterable(efrom, vfrom[v], vfrom[v+1]));
 }
 
+template <class T>
+void pagerankCalculateOrderedU(vector<T>& e, vector<T>& r, const vector<T>& f, const vector<int>& vfrom, const vector<int>& efrom, int i, int n, T c0) {
+  for (int v=i; v<i+n; v++) {
+    T a = c0;
+    for (int u : sliceIterable(efrom, vfrom[v], vfrom[v+1]))
+      a += f[u] * r[u];
+    e[v] = a - r[v];
+    r[v] = a;
+  }
+}
+
 
 
 
@@ -66,6 +77,15 @@ T pagerankError(const vector<T>& x, const vector<T>& y, int i, int N, int EF) {
     case 1:  return l1Norm(x, y, i, N);
     case 2:  return l2Norm(x, y, i, N);
     default: return liNorm(x, y, i, N);
+  }
+}
+
+template <class T>
+T pagerankError(const vector<T>& x, int i, int N, int EF) {
+  switch (EF) {
+    case 1:  return l1Norm(x, i, N);
+    case 2:  return l2Norm(x, i, N);
+    default: return liNorm(x, i, N);
   }
 }
 
@@ -91,9 +111,8 @@ PagerankResult<T> pagerankSeq(const H& xt, const J& ks, int i, const M& ns, FL f
   float t = measureDuration([&]() {
     if (q) copyValuesW(r, qc);   // copy old ranks (qc), if given
     else fillValueU(r, T(1)/N);
-    pagerankFactorW(f, vdata, 0, N, p); multiplyValuesW(c, r, f, 0, N);     // calculate factors (f) and contributions (c)
-    if (O) l = fl(r, r, c, f, vfrom, efrom, vdata, i, ns, N, p, E, L, EF);  // calculate ranks of vertices
-    else   l = fl(a, r, c, f, vfrom, efrom, vdata, i, ns, N, p, E, L, EF);  // calculate ranks of vertices
+    pagerankFactorW(f, vdata, 0, N, p); multiplyValuesW(c, r, f, 0, N);  // calculate factors (f) and contributions (c)
+    l = fl(a, r, c, f, vfrom, efrom, vdata, i, ns, N, p, E, L, EF);      // calculate ranks of vertices
   }, o.repeat);
   return {decompressContainer(xt, r, ks), l, t};
 }
