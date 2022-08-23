@@ -279,20 +279,37 @@ inline auto joinAt2dVector(const vector2d<T>& xs, const J& ig) {
 // GATHER-VALUES
 // -------------
 
-template <class T, class J, class TA>
-void gatherValues(const T *x, const J& is, TA *a) {
+template <class T, class J, class TA, class FM>
+void gatherValues(const T *x, const J& is, TA *a, FM fm) {
   size_t j = 0;
   for (auto i : is)
-    a[j++] = x[i];
+    a[j++] = fm(x[i]);
+}
+template <class T, class J, class TA>
+void gatherValues(const T *x, const J& is, TA *a) {
+  auto fm = [](auto v) { return v; };
+  gatherValues(x, is, a, fm);
+}
+template <class T, class J, class TA, class FM>
+inline void gatherValues(const vector<T>& x, const J& is, vector<TA>& a, FM fm) {
+  gatherValues(x.data(), is, a.data(), fm);
 }
 template <class T, class J, class TA>
 inline void gatherValues(const vector<T>& x, const J& is, vector<TA>& a) {
   gatherValues(x.data(), is, a.data());
 }
 
+template <class T, class J, class TA, class FM>
+inline void gatherValuesW(TA *a, const T *x, const J& is, FM fm) {
+  gatherValues(x, is, a, fm);
+}
 template <class T, class J, class TA>
 inline void gatherValuesW(TA *a, const T *x, const J& is) {
   gatherValues(x, is, a);
+}
+template <class T, class J, class TA, class FM>
+inline void gatherValuesW(vector<TA>& a, const vector<T>& x, const J& is, FM fm) {
+  gatherValues(x, is, a, fm);
 }
 template <class T, class J, class TA>
 inline void gatherValuesW(vector<TA>& a, const vector<T>& x, const J& is) {
@@ -305,20 +322,37 @@ inline void gatherValuesW(vector<TA>& a, const vector<T>& x, const J& is) {
 // SCATTER-VALUES
 // --------------
 
-template <class T, class J, class TA>
-void scatterValues(const T *x, const J& is, TA *a) {
+template <class T, class J, class TA, class FM>
+void scatterValues(const T *x, const J& is, TA *a, FM fm) {
   size_t j = 0;
   for (auto i : is)
-    a[i] = x[j++];
+    a[i] = fm(x[j++]);
+}
+template <class T, class J, class TA>
+void scatterValues(const T *x, const J& is, TA *a) {
+  auto fm = [](auto v) { return v; };
+  scatterValues(x, is, a, fm);
+}
+template <class T, class J, class TA, class FM>
+inline void scatterValues(const vector<T>& x, const J& is, vector<TA>& a, FM fm) {
+  scatterValues(x.data(), is, a.data(), fm);
 }
 template <class T, class J, class TA>
 inline void scatterValues(const vector<T>& x, const J& is, vector<TA>& a) {
   scatterValues(x.data(), is, a.data());
 }
 
+template <class T, class J, class TA, class FM>
+inline void scatterValuesW(TA *a, const T *x, const J& is, FM fm) {
+  scatterValues(x, is, a, fm);
+}
 template <class T, class J, class TA>
 inline void scatterValuesW(TA *a, const T *x, const J& is) {
   scatterValues(x, is, a);
+}
+template <class T, class J, class TA, class FM>
+inline void scatterValuesW(vector<TA>& a, const vector<T>& x, const J& is, FM fm) {
+  scatterValues(x, is, a, fm);
 }
 template <class T, class J, class TA>
 inline void scatterValuesW(vector<TA>& a, const vector<T>& x, const J& is) {
@@ -826,6 +860,39 @@ inline void multiplyValuesW(vector<TA>& a, const vector<TX>& x, const vector<TY>
 template <class TX, class TY, class TA>
 inline void multiplyValuesW(vector<TA>& a, const vector<TX>& x, const vector<TY>& y, size_t i, size_t N) {
   multiplyValues(x, y, a, i, N);
+}
+
+
+
+
+// MULTIPLY-VALUES-POSITIVE
+// ------------------------
+
+template <class TX, class TY, class TA>
+void multiplyValuesPositive(const TX *x, const TY *y, TA *a, size_t N) {
+  for (size_t i=0; i<N; i++)
+    a[i] = max(TA(x[i] * y[i]), TA());
+}
+template <class TX, class TY, class TA>
+inline void multiplyValuesPositive(const vector<TX>& x, const vector<TY>& y, vector<TA>& a) {
+  multiplyValuesPositive(x.data(), y.data(), a.data(), x.size());
+}
+template <class TX, class TY, class TA>
+inline void multiplyValuesPositive(const vector<TX>& x, const vector<TY>& y, vector<TA>& a, size_t i, size_t N) {
+  multiplyValuesPositive(x.data()+i, y.data()+i, a.data()+i, N);
+}
+
+template <class TA, class TX, class TY>
+inline void multiplyValuesPositiveW(TA *a, const TX *x, const TY *y, size_t N) {
+  multiplyValuesPositive(x, y, a, N);
+}
+template <class TX, class TY, class TA>
+inline void multiplyValuesPositiveW(vector<TA>& a, const vector<TX>& x, const vector<TY>& y) {
+  multiplyValuesPositive(x, y, a);
+}
+template <class TX, class TY, class TA>
+inline void multiplyValuesPositiveW(vector<TA>& a, const vector<TX>& x, const vector<TY>& y, size_t i, size_t N) {
+  multiplyValuesPositive(x, y, a, i, N);
 }
 
 

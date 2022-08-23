@@ -1,4 +1,5 @@
 #pragma once
+#include <utility>
 #include <type_traits>
 #include <iterator>
 #include <algorithm>
@@ -12,6 +13,7 @@ using std::iterator_traits;
 using std::vector;
 using std::unordered_map;
 using std::hash;
+using std::move;
 using std::distance;
 using std::for_each;
 using std::any_of;
@@ -24,6 +26,8 @@ using std::count_if;
 using std::back_inserter;
 using std::copy;
 using std::transform;
+using std::remove;
+using std::remove_if;
 using std::sort;
 using std::reverse;
 using std::set_difference;
@@ -43,7 +47,6 @@ inline auto first_value(I ib, I ie) {
   T a = ib != ie? *ib : T();
   return a;
 }
-
 template <class J>
 inline auto firstValue(const J& x) {
   return first_value(x.begin(), x.end());
@@ -572,6 +575,102 @@ inline auto transformVector(const JX& x, FM fm) {
 template <class JX, class JY, class FM>
 inline auto transformVector(const JX& x, const JY& y, FM fm) {
   return transform_vector(x.begin(), x.end(), y.begin(), fm);
+}
+
+
+
+
+// REMOVE
+// ------
+// Remove overpriced stocks from your portfolio.
+
+template <class I, class T>
+inline auto remove_value(I ib, I ie, const T& v) {
+  return remove(ib, ie, v);
+}
+template <class J, class T>
+inline size_t removeValue(const J& x, const T& v) {
+  auto it = remove_value(x.begin(), x.end(), v);
+  return it - x.begin();
+}
+
+
+template <class J, class F>
+inline size_t removeIf(const J& x, F fn) {
+  auto it = remove_if(x.begin(), x.end(), fn);
+  return it - x.begin();
+}
+
+
+
+
+// FILTER-IF
+// ---------
+
+template <class I, class F>
+auto filter_if(I ib, I ie, I ia, F fn) {
+  for (; ib!=ie; ++ib) {
+    if (!fn(*ib)) continue;
+    if (ia!=ib) *ia = move(*ib);
+    ++ia;
+  }
+  return ia;
+}
+template <class I, class F>
+inline auto filter_if(I ib, I ie, F fn) {
+  return filter_if(ib, ie, ib, fn);
+}
+
+template <class J, class F>
+inline size_t filterIf(J& a, F fn) {
+  auto it = filter_if(a.begin(), a.end(), fn);
+  return it - a.begin();
+}
+
+
+template <class I, class F>
+inline auto pairs_filter_if(I ib, I ie, I ia, F fn) {
+  auto ft = [&](const auto& p) { return fn(p.first, p.second); };
+  return filter_if(ib, ie, ia, ft);
+}
+template <class I, class F>
+inline auto pairs_filter_if_key(I ib, I ie, I ia, F fn) {
+  auto ft = [&](const auto& p) { return fn(p.first); };
+  return filter_if(ib, ie, ia, ft);
+}
+template <class I, class F>
+inline auto pairs_filter_if_value(I ib, I ie, I ia, F fn) {
+  auto ft = [&](const auto& p) { return fn(p.second); };
+  return filter_if(ib, ie, ia, ft);
+}
+
+template <class I, class F>
+inline auto pairs_filter_if(I ib, I ie, F fn) {
+  return pairs_filter_if(ib, ie, ib, fn);
+}
+template <class I, class F>
+inline auto pairs_filter_if_key(I ib, I ie, F fn) {
+  return pairs_filter_if_key(ib, ie, ib, fn);
+}
+template <class I, class F>
+inline auto pairs_filter_if_value(I ib, I ie, F fn) {
+  return pairs_filter_if_value(ib, ie, ib, fn);
+}
+
+template <class J, class F>
+inline auto pairsFilterIf(J& a, F fn) {
+  auto it = pairs_filter_if(a.begin(), a.end(), fn);
+  return it - a.begin();
+}
+template <class J, class F>
+inline auto pairsFilterIfKey(J& a, F fn) {
+  auto it = pairs_filter_if_key(a.begin(), a.end(), fn);
+  return it - a.begin();
+}
+template <class J, class F>
+inline auto pairsFilterIfValue(J& a, F fn) {
+  auto it = pairs_filter_if_value(a.begin(), a.end(), fn);
+  return it - a.begin();
 }
 
 

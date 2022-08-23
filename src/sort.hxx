@@ -6,7 +6,7 @@
 #include "_main.hxx"
 #include "vertices.hxx"
 #include "edges.hxx"
-#include "degree.hxx"
+#include "properties.hxx"
 #include "dfs.hxx"
 #include "components.hxx"
 
