@@ -90,6 +90,7 @@ $ ...
 
 
 [![](https://i.imgur.com/oTdO0LJ.jpg)](https://www.youtube.com/watch?v=2zQb_OitsaY)<br>
+[![DOI](https://zenodo.org/badge/528045749.svg)](https://zenodo.org/badge/latestdoi/528045749)
 
 
 [(1)]: https://ieeexplore.ieee.org/document/9407114
