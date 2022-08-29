@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-src="pagerank-ordered-vs-unordered"
+src="pagerank-ordered-adjust-tolerance"
 out="/home/resources/Documents/subhajit/$src.log"
 ulimit -s unlimited
 printf "" > "$out"
