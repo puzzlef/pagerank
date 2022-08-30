@@ -103,6 +103,7 @@ $ ...
 
 
 [![](https://i.imgur.com/qp7YIhe.jpg)](https://www.youtube.com/watch?v=69-J2m_GyhI)<br>
+[![DOI](https://zenodo.org/badge/530183906.svg)](https://zenodo.org/badge/latestdoi/530183906)
 
 
 [(1)]: https://github.com/puzzlef/pagerank-ordered-vs-unordered
