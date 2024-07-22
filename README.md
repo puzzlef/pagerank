@@ -348,8 +348,51 @@ and *web-NotreDame* graphs).
 
 ## References
 
-- [PageRank Algorithm, Mining massive Datasets (CS246), Stanford University][this lecture]
-- [SuiteSparse Matrix Collection]
+- Estimating PageRank on graph streams
+- Fast Distributed PageRank Computation
+- Reducing Pagerank Communication via Propagation Blocking
+- Distributed PageRank computation based on iterative aggregation-disaggregation methods
+- Incremental Query Processing on Big Data Streams
+- PageRank on an evolving graph
+- Streaming graph partitioning for large distributed graphs
+- Auto-parallelizing stateful distributed streaming applications
+- Time-evolving graph processing at scale
+- Towards large-scale graph stream processing platform
+- An FPGA architecture for the Pagerank eigenvector problem
+- Towards Scaling Fully Personalized PageRank: Algorithms, Lower Bounds, and Experiments
+- Parallel personalized pagerank on dynamic graphs
+- Fast personalized PageRank on MapReduce
+- A Dynamical System for PageRank with Time-Dependent Teleportation
+- Fast PageRank Computation on a GPU Cluster
+- Accelerating PageRank using Partition-Centric Processing
+- Evaluation of distributed stream processing frameworks for IoT applications in Smart Cities
+- The power of both choices: Practical load balancing for distributed stream processing engine
+- A Survey on PageRank Computing
+- Benchmarking Distributed Stream Processing Platforms for IoT Applications
+- Toward Efficient Hub-Less Real Time Personalized PageRank
+- Identifying Key Users in Online Social Networks: A PageRank Based Approach
+- RIoTBench: An IoT benchmark for distributed stream processing systems
+- Efficient PageRank Tracking in Evolving Networks
+- Efficient Computation of PageRank
+- Deeper Inside PageRank
+- DISTINGER: A distributed graph data structure for massive dynamic graph processing
+- The PageRank Problem, Multiagent Consensus, and Web Aggregation: A Systems and Control Viewpoint
+- Cognitive spammer: A Framework for PageRank analysis with Split by Over-sampling and Train by Under-fitting
+- FrogWild! -- Fast PageRank Approximations on Graph Engines
+- RIoTBench: A Real-time IoT Benchmark for Distributed Stream Processing Platforms
+- Approximate Personalized PageRank on Dynamic Graphs
+- LBSNRank: personalized pagerank on location-based social networks
+- DataMPI: Extending MPI to Hadoop-Like Big Data Computing
+- Performance evaluation of big data frameworks for large-scale data analytics
+- SP-Partitioner: A novel partition method to handle intermediate data skew in spark streaming
+- Practice of Streaming Processing of Dynamic Graphs: Concepts, Models, and Systems
+- The applications of graph theory to investing
+- Scalability! But at what COST?
+- Mapreduce is Good Enough? If All You Have is a Hammer, Throw Away Everything That's Not a Nail!
+- G-Store: High-Performance Graph Store for Trillion-Edge Processing
+- X-Stream: edge-centric graph processing using streaming partitions
+- [PageRank Algorithm, Mining massive Datasets (CS246), Stanford University](https://www.youtube.com/watch?v=ke9g8hB0MEo)
+- [SuiteSparse Matrix Collection](https://sparse.tamu.edu)
 
 <br>
 <br>
@@ -359,8 +402,8 @@ and *web-NotreDame* graphs).
 
 
 [Prof. Dip Sankar Banerjee]: https://sites.google.com/site/dipsankarban/
-[Prof. Kishore Kothapalli]: https://cstar.iiit.ac.in/~kkishore/
-[SuiteSparse Matrix Collection]: https://suitesparse-collection-website.herokuapp.com
+[Prof. Kishore Kothapalli]: https://faculty.iiit.ac.in/~kkishore/
+[SuiteSparse Matrix Collection]: https://sparse.tamu.edu/
 [this lecture]: https://www.youtube.com/watch?v=ke9g8hB0MEo
 [eedi]: https://ieeexplore.ieee.org/document/9407114
 [page]: https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.38.5427
